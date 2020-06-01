@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="70f76cf3-6341-4c08-ab13-5f0b20a522ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/__uniappquill.js" beforeDir="false" afterPath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/__uniappquill.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/__uniappview.html" beforeDir="false" afterPath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/__uniappview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/app-config-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/app-config-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/app-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/app-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/app-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/app-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/app-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/app-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/view.umd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/unpackage/dist/dev/app-plus/view.umd.min.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cg2gb3CZxVt5mTu1hibhuD7sdK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/index" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WebPro\mergeApp\pages\index" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70f76cf3-6341-4c08-ab13-5f0b20a522ba" name="Default Changelist" comment="" />
+      <created>1590936028236</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590936028236</updated>
+      <workItem from="1590936030313" duration="171000" />
+      <workItem from="1590936351003" duration="3671000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="526" y="218" key="SettingsEditor" timestamp="1590938215361">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="526" y="218" key="SettingsEditor/-1920.0.1536.864/0.0.2048.1152@0.0.2048.1152" timestamp="1590938215361" />
+    <state x="766" y="205" key="refactoring.ChangeSignatureDialog" timestamp="1590939331461">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="766" y="205" key="refactoring.ChangeSignatureDialog/-1920.0.1536.864/0.0.2048.1152@0.0.2048.1152" timestamp="1590939331461" />
+    <state x="687" y="253" width="672" height="678" key="search.everywhere.popup" timestamp="1590936778033">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="687" y="253" width="672" height="678" key="search.everywhere.popup/-1920.0.1536.864/0.0.2048.1152@0.0.2048.1152" timestamp="1590936778033" />
+  </component>
+</project>

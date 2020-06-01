@@ -7,6 +7,12 @@
 			}
 		},
 		{
+			"path" : "pages/index/draft/draft",
+			"style": {
+				"navigationBarTitleText": "草稿箱"
+			}
+		},
+		{
 			"path": "pages/index/index"
 		}
 	],
@@ -15,5 +21,22 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#007AFF",
 		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/letter/writerLetter/writerLetter",
+			"iconPath": "static/image/icon_component.png",
+			"selectedIconPath": "static/image/icon_component_HL.png",
+			"text": "写信"
+		}, {
+			"pagePath": "pages/index/draft/draft",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "草稿箱"
+		}]
 	}
 }

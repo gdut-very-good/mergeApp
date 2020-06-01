@@ -1,7 +1,7 @@
 <template>
 	 <view class="writeLetter-container">
 	      日
-	    </view>
+	 </view>
 </template>
 
 <script>
