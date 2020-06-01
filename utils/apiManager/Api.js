@@ -2,7 +2,7 @@ import {baseUrl} from "./request";
 
 const successCode = "1";
 const successMsg = "success";
-const Authorization = '523ccba4-3916-4033-9366-687ae0d8c598'
+const Authorization = '94a666e5-a070-42d8-b0a2-b7a9dfe2d4c5';
 // const Request = axios.create({
 // 	baseURL: baseUrl,
 // 	headers: {
@@ -43,7 +43,7 @@ const Authorization = '523ccba4-3916-4033-9366-687ae0d8c598'
 
 const Request = {
 	get(url, params) {
-		console.log(Authorization)
+		console.log(Authorization);
 		return new Promise((resolve, reject) => {
 			uni.request({
 				url : baseUrl + url,

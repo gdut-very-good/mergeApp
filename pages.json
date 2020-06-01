@@ -13,6 +13,12 @@
 			}
 		},
 		{
+			"path": "pages/index/islandPage/IslandPage",
+			"style": {
+				"navigationBarTitleText": "海岛"
+			}
+		},
+		{
 			"path": "pages/index/index"
 		}
 	],
@@ -37,6 +43,11 @@
 			"iconPath": "static/image/icon_API.png",
 			"selectedIconPath": "static/image/icon_API_HL.png",
 			"text": "草稿箱"
+		}, {
+			"pagePath": "pages/index/islandPage/IslandPage",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "海岛"
 		}]
 	}
 }

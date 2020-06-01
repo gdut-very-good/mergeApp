@@ -29,11 +29,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/index" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WebPro\mergeApp\components" />
       <recent name="E:\WebPro\mergeApp\pages\index" />
     </key>
   </component>
@@ -49,6 +50,7 @@
       <updated>1590936028236</updated>
       <workItem from="1590936030313" duration="171000" />
       <workItem from="1590936351003" duration="3671000" />
+      <workItem from="1590974486125" duration="5672000" />
     </task>
     <servers />
   </component>
@@ -61,6 +63,11 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
+    <state x="0" y="662" key="FileChooserDialogImpl" timestamp="1591004579615">
+      <screen x="0" y="0" width="2048" height="1152" />
+    </state>
+    <state x="-1920" y="374" key="FileChooserDialogImpl/-1920.0.1536.864/0.0.2048.1152@-1920.0.1536.864" timestamp="1591000060516" />
+    <state x="0" y="662" key="FileChooserDialogImpl/-1920.0.1536.864/0.0.2048.1152@0.0.2048.1152" timestamp="1591004579615" />
     <state x="526" y="218" key="SettingsEditor" timestamp="1590938215361">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>

@@ -23,7 +23,10 @@
             }
         },
         async mounted() {
-			this.draftData = await new Request().get("/letter/draft");
+			this.draftData = await Request.get("/letter/draft");
+			let data = await Request.get("/star");
+			console.log(data);
+
 		}
 
 	}

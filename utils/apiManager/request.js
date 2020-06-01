@@ -1,7 +1,7 @@
 let baseUrl = 'http://island.hellochaos.cn/island/api/v1/';
 let Authorization = '574b4b19-4e24-4cf4-a164-7d888d533254';
 
-export class Request {
+class _Request {
     get(url) {
 		return new Promise(resolve => {
 			uni.request({
@@ -55,5 +55,8 @@ export class Request {
     //     return _Request.delete(baseUrl + url);
     // }
 }
+
+const Request = new _Request();
+export {Request}
 
 export {baseUrl, Authorization}
