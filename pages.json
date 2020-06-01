@@ -1,67 +1,7 @@
 {
 	"pages": [
 		{
-			"path": "pages/loginPage/login",
-			"style":{
-				"navigationStyle":"custom",
-				"app-plus":{
-					"titleNView":false
-				}
-			}
-		},
-		{
 			"path": "pages/index/letter/writerLetter/writerLetter",
-			"style": {
-				"navigationBarTitleText": "写点什么"
-			}
-		},
-		{
-			"path": "pages/index/letter/writerLetter/letterMessage/letterMessage",
-			"style": {
-				"navigationBarTitleText": "来往信息"
-			}
-		},
-		{
-			"path": "pages/index/letter/jiaonang/jiaonang",
-			"style": {
-				"navigationBarTitleText": "写给明天的自己"
-			}
-		},
-		{
-			"path": "pages/index/letter/jiaonang/timeChoose/timeChoose",
-			"style": {
-				"navigationBarTitleText": "定时"
-			}
-		},
-		{
-			"path": "pages/index/letter/letter/envelope/envelope",
-			"style": {
-				"navigationBarTitleText": "写信"
-			}
-		},
-		{
-			"path": "pages/index/letter/letter/submitEnvelope/submitEnvelope",
-			"style": {
-				"navigationBarTitleText": "信件信息"
-			}
-		},
-		{
-			"path": "pages/loginPage/login",
-			"style":{
-			       "navigationStyle":"custom",
-			       "app-plus":{
-			       "titleNView":false
-				   }
-			}
-		},
-		{
-			"path": "pages/index/letter/shudong/shudong",
-			"style": {
-				"navigationBarTitleText": "创建树洞"
-			}
-		},
-		{
-			"path": "pages/index/letter/letter/letter",
 			"style": {
 				"navigationBarTitleText": "写点什么"
 			}
@@ -101,35 +41,26 @@
 		"backgroundColor": "#FFFFFF"
 	},
 	"tabBar": {
-	  "borderStyle": "black",
-	  "backgroundColor": "#333",
-	  "color": "#8F8F94",
-	  "selectedColor": "#41B883",
-	  "list": [{
-	    "pagePath": "pages/index/letter/writerLetter/writerLetter",
-	    "iconPath": "static/envelope.png",
-	    "selectedIconPath": "static/envelope.png",
-	    "text": "写信"
-	   },
-	   {
-	   	 "pagePath": "pages/tabbar/tabbar-2/tabbar-2",
-	     "iconPath": "static/draft.png",
-	     "selectedIconPath": "static/draft.png",
-	     "text": "草稿"
-	    },
-	    {
-	     "pagePath": "pages/index/islandPage/IslandPage",
-	     "iconPath": "static/island.png",
-	     "selectedIconPath": "static/island.png",
-	     "text": "海岛"
-	    },
-	   {
-	    "pagePath": "pages/tabbar/tabbar-4/tabbar-4",
-	    "iconPath": "static/my.png",
-	    "selectedIconPath": "static/my.png",
-	    "text": "我的"
-	   },
-	   {
+		"color": "#7A7E83",
+		"selectedColor": "#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/letter/writerLetter/writerLetter",
+			"iconPath": "static/image/icon_component.png",
+			"selectedIconPath": "static/image/icon_component_HL.png",
+			"text": "写信"
+		}, {
+			"pagePath": "pages/index/draft/draft",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "草稿箱"
+		}, {
+			"pagePath": "pages/index/islandPage/IslandPage",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "海岛"
+		}, {
 			"pagePath": "pages/index/islandPage/IslandDetail/IslandDetail",
 			"iconPath": "static/image/icon_API.png",
 			"selectedIconPath": "static/image/icon_API_HL.png",
@@ -139,7 +70,6 @@
 			"iconPath": "static/image/icon_API.png",
 			"selectedIconPath": "static/image/icon_API_HL.png",
 			"text": "动态"
-		}
-	  ]
-	 }
+		}]
+	}
 }

@@ -1,13 +1,8 @@
 .DS_Store
 node_modules
 /dist
-oss.config.js
-/platforms
 /.idea
-
 /unpackage
-
-
 # local env files
 .env.local
 .env.*.local

@@ -1,16 +1,18 @@
 <style scoped lang="less">
+    @import "../../../../utils/css/mixin";
+
     .card-item {
-        height: 10rem;
+        height: 5rem;
         width: 80%;
         border: 1px solid black;
         margin: 0.5rem auto auto;
 
         .shudong-title {
-            @titleHeight: 2rem;
+            @titleHeight: 1rem;
             height: @titleHeight;
             line-height: @titleHeight;
             text-align: center;
-            font-size: 1rem;
+            font-size: 0.5rem;
         }
 
         .shudong-content {
