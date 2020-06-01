@@ -1,12 +1,11 @@
 <style scoped lang="less">
-    @import "../../../../../utils/css/mixin";
 
     .letter-message {
 
     }
 
     .writeLetter-title {
-        .title;
+       text-align: center;
     }
 
     .bottom-con {
@@ -100,25 +99,13 @@
             }
         },
 
-        mounted() {
-            // let data = {
-            //             username: 'huange7',
-            //             password: '123456'
-            //         }
-            //         loginModules.login(data).then(res => {
-            //
-            //             if (res.code == 1) {
-            //
-            //             }
-            //             alert(res.message)
-            //         })
-            this.getLetterInfo()
-
+        onLoad(options) {
+            this.getLetterInfo(options.userId)
         },
 
         methods: {
-            getLetterInfo() {
-                letter.getFriendLetter(1).then(res => {
+            getLetterInfo(userId) {
+                letter.getFriendLetter(userId).then(res => {
                     if (res.code == 1) {
                         this.letterList = res.data.records
                         this.reformat()

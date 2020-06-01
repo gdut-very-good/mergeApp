@@ -3,5 +3,15 @@
  * @param res
  */
 export function errorCode(res) {
-    alert('其他错误')
+	if (res.code == 3001) {
+	   uni.showToast({
+			title:'请登录后重试',
+			icon: "none"
+	   })
+	} else {
+		uni.showToast({
+			title:res.message,
+			icon: "none"
+		})
+	}
 }

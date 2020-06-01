@@ -26,6 +26,9 @@ class LetterApi extends Request{
     async submitLetter(data) {
         return getResult(await this.post('/letter', data))
     }
+	async submitDate(data) {
+		return getResult(await this.post('/letter/capsule', data))
+	}
 }
 
 export const letter = new LetterApi()
