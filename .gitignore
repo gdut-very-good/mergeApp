@@ -3,6 +3,7 @@ node_modules
 /dist
 oss.config.js
 /platforms
+/.idea
 
 # local env files
 .env.local

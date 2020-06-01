@@ -47,11 +47,11 @@
 		},
 		{
 			"path": "pages/loginPage/login",
-			"style":{		
-			       "navigationStyle":"custom",		
-			       "app-plus":{		
+			"style":{
+			       "navigationStyle":"custom",
+			       "app-plus":{
 			       "titleNView":false
-				   }	
+				   }
 			}
 		},
 		{
@@ -64,6 +64,18 @@
 			"path": "pages/index/letter/letter/letter",
 			"style": {
 				"navigationBarTitleText": "写点什么"
+			}
+		},
+		{
+			"path" : "pages/index/draft/draft",
+			"style": {
+				"navigationBarTitleText": "草稿箱"
+			}
+		},
+		{
+			"path": "pages/index/islandPage/IslandPage",
+			"style": {
+				"navigationBarTitleText": "海岛"
 			}
 		},
 		{
