@@ -59,13 +59,20 @@
 		},
         methods : {
         	toDetail() {
-        		console.log(this.userId);
-        		this.$router.push({
-                    name : 'detail',
-                    query : {
-                    	userId : this.userId
-                    }
-                })
+        		// console.log(this.userId);
+        		// this.$router.push({
+                //     name : 'detail',
+                //     query : {
+                //     	userId : this.userId
+                //     }
+                // })
+				uni.navigateTo({
+					url: 'IslandDetail',
+					fail(e) {
+						console.log(e);
+					}
+				})
+
             }
         }
 	}

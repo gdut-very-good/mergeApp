@@ -2,12 +2,11 @@
 @paddingHor : 10;
 @paddingHorPx : 10px;
 .IslandDetailView {
-    margin-bottom: 120px;
     .header {
         .bg {
-            height: 300 * @px2rem;
+            height: 200px;
             width: 100%;
-
+            //background: url('https://300img.rcywl.com/300data/res/ui/hero/233.bmp') repeat-x scroll cover center;
         }
         .container {
             height: 100 * @px2rem;
@@ -52,7 +51,10 @@
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
-            padding: 0 16px;
+            padding: 0 10px;
+            position: relative;
+            margin-top: 10px;
+            margin-bottom: 10px;
             .box {
                 display: flex;
                 flex-direction: row;
@@ -64,22 +66,30 @@
                 flex-direction: row;
                 justify-content: start;
                 align-items: center;
+                font-size: 16px;
             }
-            .span:nth-of-type(1) {
-                height: 80px;
-                width: 60px;
-                font-size: 60px;
+            .span {
+                height: 40px;
+                width: 30px;
+                margin-right: 10px;
+                font-size: 30px;
+                line-height: 40px;
+            }
+            .post {
+                height: 100%;
 
             }
-            .span:nth-of-type(2) {
-                height: 100%;
-            }
             .button {
-                height: 60px;
-                padding: 0 10px;
+                position: absolute;
+                right: 10px;
+                height: 36px;
+                padding: 0 8px;
                 box-sizing: border-box;
                 background-color: rgb(254, 204, 24);
                 color: #010101;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }

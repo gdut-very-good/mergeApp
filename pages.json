@@ -19,6 +19,18 @@
 			}
 		},
 		{
+			"path" : "pages/index/islandPage/IslandDetail/IslandDetail",
+			"style": {
+				"navigationBarTitleText": "海岛"
+			}
+		},
+		{
+			"path" : "pages/index/islandPage/IslandDetail/postDetail/PostDetail",
+			"style": {
+				"navigationBarTitleText": "动态"
+			}
+		},
+		{
 			"path": "pages/index/index"
 		}
 	],
@@ -48,6 +60,16 @@
 			"iconPath": "static/image/icon_API.png",
 			"selectedIconPath": "static/image/icon_API_HL.png",
 			"text": "海岛"
+		}, {
+			"pagePath": "pages/index/islandPage/IslandDetail/IslandDetail",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "海岛1"
+		}, {
+			"pagePath": "pages/index/islandPage/IslandDetail/postDetail/PostDetail",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "动态"
 		}]
 	}
 }
