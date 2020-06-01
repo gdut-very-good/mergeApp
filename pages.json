@@ -1,17 +1,20 @@
 {
 	"pages": [
 		{
+			"path": "pages/loginPage/login",
+			"style":{
+				"navigationStyle":"custom",
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		},
+		{
 			"path": "pages/index/letter/writerLetter/writerLetter",
 			"style": {
 				"navigationBarTitleText": "写点什么"
 			}
 		},
-		// {
-		// 	"path": "pages/index/letter/writerLetter/friendInfo/friendInfo",
-		// 	"style": {
-		// 		"navigationBarTitleText": "笔友信息"
-		// 	}
-		// },
 		{
 			"path": "pages/index/letter/writerLetter/letterMessage/letterMessage",
 			"style": {
@@ -22,15 +25,6 @@
 			"path": "pages/index/letter/jiaonang/jiaonang",
 			"style": {
 				"navigationBarTitleText": "写给明天的自己"
-			}
-		},
-		{
-			"path": "pages/loginPage/login",
-			"style":{		
-			       "navigationStyle":"custom",		
-			       "app-plus":{		
-						"titleNView":false
-				   }	
 			}
 		},
 		{

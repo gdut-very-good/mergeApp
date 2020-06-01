@@ -142,14 +142,15 @@
 <script>
     import {loginModules} from "@/utils/apiManager/loginApi";
 	import {userInfo} from '@/utils/userInfo/user'
+	import {errorCode} from "../../utils/errorCode/errorCode";
     export default {
         name: 'login',
         data() {
             return {
                 logShow: true,
                 log: {
-                    username: 'huange7',
-                    password: '123456'
+                    username: '',
+                    password: ''
                 },
                 sign: {
                     username: '',
@@ -176,14 +177,18 @@
 					loginModules.login(data).then(res => {
 					    if (res.code == 1) {
 							userInfo.initInfo(res.data)
-					        uni.navigateTo({
+							uni.showToast({
+								title: '登录成功'
+							})
+					        uni.switchTab({
 								url: '../index/letter/writerLetter/writerLetter',
 								fail: (res) => {
 									console.log(res)
 								}
 							})
-					    }
-					    alert(res.message)
+					    } else {
+							errorCode(res)
+						}
 					})
 				} else {
 					if (this.sign.confirm !== this.sign.password) {
