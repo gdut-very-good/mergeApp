@@ -6,6 +6,72 @@
 				"navigationBarTitleText": "写点什么"
 			}
 		},
+		// {
+		// 	"path": "pages/index/letter/writerLetter/friendInfo/friendInfo",
+		// 	"style": {
+		// 		"navigationBarTitleText": "笔友信息"
+		// 	}
+		// },
+		{
+			"path": "pages/index/letter/writerLetter/letterMessage/letterMessage",
+			"style": {
+				"navigationBarTitleText": "来往信息"
+			}
+		},
+		{
+			"path": "pages/index/letter/jiaonang/jiaonang",
+			"style": {
+				"navigationBarTitleText": "写给明天的自己"
+			}
+		},
+		{
+			"path": "pages/loginPage/login",
+			"style":{		
+			       "navigationStyle":"custom",		
+			       "app-plus":{		
+						"titleNView":false
+				   }	
+			}
+		},
+		{
+			"path": "pages/index/letter/jiaonang/timeChoose/timeChoose",
+			"style": {
+				"navigationBarTitleText": "定时"
+			}
+		},
+		{
+			"path": "pages/index/letter/letter/envelope/envelope",
+			"style": {
+				"navigationBarTitleText": "写信"
+			}
+		},
+		{
+			"path": "pages/index/letter/letter/submitEnvelope/submitEnvelope",
+			"style": {
+				"navigationBarTitleText": "信件信息"
+			}
+		},
+		{
+			"path": "pages/loginPage/login",
+			"style":{		
+			       "navigationStyle":"custom",		
+			       "app-plus":{		
+			       "titleNView":false
+				   }	
+			}
+		},
+		{
+			"path": "pages/index/letter/shudong/shudong",
+			"style": {
+				"navigationBarTitleText": "创建树洞"
+			}
+		},
+		{
+			"path": "pages/index/letter/letter/letter",
+			"style": {
+				"navigationBarTitleText": "写点什么"
+			}
+		},
 		{
 			"path": "pages/index/index"
 		}
@@ -15,5 +81,36 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#007AFF",
 		"backgroundColor": "#FFFFFF"
-	}
+	},
+	"tabBar": {
+	  "borderStyle": "black",
+	  "backgroundColor": "#333",
+	  "color": "#8F8F94",
+	  "selectedColor": "#41B883",
+	  "list": [{
+	    "pagePath": "pages/index/letter/writerLetter/writerLetter",
+	    "iconPath": "static/envelope.png",
+	    "selectedIconPath": "static/envelope.png",
+	    "text": "写信"
+	   },
+	   // {
+	   //  "pagePath": "pages/tabbar/tabbar-2/tabbar-2",
+	   //  "iconPath": "static/draft.png",
+	   //  "selectedIconPath": "static/draft.png",
+	   //  "text": "草稿"
+	   // },
+	   // {
+	   //  "pagePath": "pages/tabbar/tabbar-4/tabbar-4",
+	   //  "iconPath": "static/island.png",
+	   //  "selectedIconPath": "static/island.png",
+	   //  "text": "海岛"
+	   // },
+	   {
+	    "pagePath": "pages/tabbar/tabbar-4/tabbar-4",
+	    "iconPath": "static/my.png",
+	    "selectedIconPath": "static/my.png",
+	    "text": "我的"
+	   }
+	  ]
+	 }
 }

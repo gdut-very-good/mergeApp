@@ -2,9 +2,8 @@
 /**
  * @function 去除空格的检验
  */
-import $ from 'jquery'
 export function isNotNullTrim(source) {
-    return source != null && source != 'undefined' && $.trim(source) != "";
+    return source != null && source != 'undefined'
 }
 
 export function checkNumber(theObj) {

@@ -4,12 +4,14 @@
 	}
 	
 	.pingyin-container {
-		height: 1.5rem;
-		background-color: red;
-		line-height: 1.5rem;
+		height: 1rem;
+		background-color: #efe2e2;
+		line-height: 1rem;
+		font-size: 0.9rem;
 	}
 	
 	.friend-list-container {
+		padding: 0.5rem 0 0.5rem 0;
 		height: 2.5rem;
 	}
 	
@@ -37,36 +39,40 @@
 		display: flex;
 		align-items: center;
 		height: 50%;
+		font-size: 0.8rem;
 	}
 	
 	.city {
 		display: flex;
 		align-items: center;
 		height: 50%;
+		font-size: 0.8rem;
 	}
 	
 	.head-icon {
-		height: 1.5rem;
-		width: 1.5rem;
+		height: 1rem;
+		width: 1rem;
 	}
     
 </style>
 
 <template>
     <view class="friend-container">
-		<view class="pingyin-container">
-			<view class="inner-container">
-				A
+		<view  v-for="item in boomFriend">
+			<view class="pingyin-container">
+				<view class="inner-container">
+					{{item.group}}
+				</view>
 			</view>
-		</view>
-		<view class="friend-list-container">
-			<view class="inner-container">
-				<view class="head-image"></view>
-				<view class="right-bar">
-					<view class="name">小明</view>
-					<view class="city">
-						<image src="http://printer.noerror.xyz/appImage/head-icon.png" class="head-icon"></image>
-						<text>广州</text>
+			<view class="friend-list-container" v-for="friend in item.data" @click="jump(friend.userId)">
+				<view class="inner-container">
+					<image class="head-image" :src="'http://island.hellochaos.cn/uploads/' + friend.photo"></image>
+					<view class="right-bar">
+						<view class="name">{{friend.nickname}}</view>
+						<view class="city">
+							<image src="http://printer.noerror.xyz/appImage/postion.png" class="head-icon"></image>
+							<text>{{friend.city}}</text>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -76,11 +82,11 @@
 
 <script>
     import {letter} from "@/utils/apiManager/letterApi";
- //    import {py} from '@/utils/pingyin/pinyin';
- //    import {isNotNullTrim, checkNumber, moveArray} from "@/utils/utils";
+    import {py} from '@/utils/pingyin/pinyin';
+    import {isNotNullTrim, checkNumber, moveArray} from "@/utils/utils";
     import {loginModules} from "@/utils/apiManager/loginApi";
  //    import user from "@/store/modules/user";
- //    const PinyinMatch = require('pinyin-match');
+    // const PinyinMatch = require('pinyin-match');
 
     export default {
         name: 'writeLetter',
@@ -92,11 +98,6 @@
         },
 
         mounted() {
-			// let data = {
-			// 	username: "huange7",
-			// 	password: '123456'
-			// }
-			// loginModules.login(data).then()
             letter.getBoomFriend().then(res => {
                 if (res.code == 1) {
                     this.boomFriend = this.reFormat(res.data.records)
@@ -148,11 +149,12 @@
             },
 
             jump(userId) {
-                this.$router.push({
-                    name: 'friendInfo',
-                    query: {
-                        userId: userId
-                    }
+				console.log(userId)
+                uni.navigateTo({
+                	url: '/pages/index/letter/writerLetter/letterMessage/letterMessage?userId=' + userId,
+					fail(res) {
+						console.log(res)
+					}
                 })
             }
         }

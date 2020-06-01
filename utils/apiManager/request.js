@@ -1,5 +1,5 @@
 let baseUrl = 'http://island.hellochaos.cn/island/api/v1';
-let Authorization = '574b4b19-4e24-4cf4-a164-7d888d533254'
+let Authorization = '6a4a7999-1495-4f8e-b8b8-0a12a511ea88'
 
 export class Request {
     get(url) {
