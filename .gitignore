@@ -4,7 +4,7 @@ node_modules
 oss.config.js
 /platforms
 /.idea
-
+/unpackage
 
 # local env files
 .env.local

@@ -26,6 +26,7 @@ class LetterApi extends Request{
     async submitLetter(data) {
         return getResult(await this.post('/letter', data))
     }
+    //时间胶囊
 	async submitDate(data) {
 		return getResult(await this.post('/letter/capsule', data))
 	}

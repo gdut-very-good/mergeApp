@@ -10,7 +10,7 @@
             height: @titleHeight;
             line-height: @titleHeight;
             text-align: center;
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
 
         .shudong-content {
@@ -18,6 +18,7 @@
             overflow: scroll;
             width: 90%;
             margin: 0 auto;
+            font-size: 0.8rem;
         }
     }
 </style>

@@ -86,6 +86,11 @@
 						uni.showToast({
 							title: "提交成功"
 						})
+						setTimeout(() => {
+							uni.navigateBack({
+								delta: 2
+							})
+						}, 1000)
 					} else {
 						errorCode(res)
 					}

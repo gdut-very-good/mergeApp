@@ -22,6 +22,9 @@ class my extends Request{
     async getMyTreeHole() {
         return getResult(await this.get('/tree-hole/me'))
     }
-
+    //头像上传
+    async uploadHeadIcon(data) {
+        return getResult(await this.upload('/user/upload', data))
+    }
 }
 export const myApi = new my()

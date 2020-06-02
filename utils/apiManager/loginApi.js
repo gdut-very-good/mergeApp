@@ -13,10 +13,6 @@ class LoginApi extends Request{
     async changeUserInfo(data) {
         return getResult(await this.put('/user/', data))
     }
-
-    async uploadHeadIcon(data) {
-        return getResult(await this.upload('/user/upload', data))
-    }
 }
 
 export const loginModules = new LoginApi()

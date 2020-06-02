@@ -1,5 +1,8 @@
 <script>
 export default {
+    watch: {
+
+    },
 	onLaunch: function() {
 		console.log('App Launch');
 	},
