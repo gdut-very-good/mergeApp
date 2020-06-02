@@ -119,6 +119,12 @@
       "style": {
         "navigationBarTitleText": "树洞信息"
       }
+    },
+    {
+      "path": "pages/index/letter/writerLetter/friendInfo/friendInfo",
+      "style": {
+        "navigationBarTitleText": "笔友信息"
+      }
     }
   ],
   "globalStyle": {

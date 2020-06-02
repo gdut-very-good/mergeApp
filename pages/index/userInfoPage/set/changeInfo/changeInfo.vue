@@ -50,13 +50,14 @@
 
         data() {
             return {
-                value: this.$route.query.value,
-                module: this.$route.query.module
+                value: '',
+                module: ''
             }
         },
 
-        mounted() {
-
+        onLoad(options) {
+            this.value = options.value
+            this.module = options.module
         },
 
         methods: {

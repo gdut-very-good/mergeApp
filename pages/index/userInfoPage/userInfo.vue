@@ -141,12 +141,14 @@
                     <image src="http://printer.noerror.xyz/appImage/right_arrow.png" class="right-arrow"></image>
                 </view>
             </view>
+
         </view>
     </view>
 </template>
 
 <script>
     import {userInfo} from "../../../utils/userInfo/user";
+    import {Authorization} from "../../../utils/apiManager/request";
 
     export default {
         name: 'userInfo',
@@ -155,13 +157,14 @@
             name() {
                 return userInfo.Info.username
             },
-            headUrl () {
-                return userInfo.Info.photo
-            }
+            // headUrl () {
+            //     return userInfo.Info.photo
+            // }
         },
 
         data() {
             return {
+                headUrl: '',
                 listItem: [
                     {
                         name: '消息',
@@ -187,7 +190,15 @@
             }
         },
 
+        onShow() {
+            console.log(userInfo.Info)
+            this.initData()
+        },
+
         methods: {
+            initData() {
+                this.headUrl = userInfo.Info.photo
+            },
             jump(moduleName) {
                 if (moduleName === 'zhuxiao') {
                     uni.showModal({
@@ -197,7 +208,8 @@
                             if (res.cancel) {
                                 //点击取消,默认隐藏弹框
                             } else {
-                                uni.redirectTo({
+                                Authorization = ''
+                                uni.navigateTo({
                                     url: '/pages/loginPage/login',
                                     fail(res) {
                                         console.log(res)

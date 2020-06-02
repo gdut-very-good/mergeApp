@@ -214,9 +214,7 @@
                                 title: '注册成功'
                             })
                             setTimeout(() => {
-                                uni.switchTab({
-                                    url: '/pages/index/letter/writerLetter/writerLetter',
-                                })
+                                this.logShow = true
                             }, 500)
                         } else {
                             errorCode(res)

@@ -71,8 +71,10 @@
 
 <script>
     import layer from "@/components/layer/layer";
-    import {stamp, matchId} from "@/utils/stampStyle/stampStyle";
+    import {stamp, matchId, getUserStamp} from "@/utils/stampStyle/stampStyle";
 	import {letterInformation} from "@/utils/userInfo/letterInfo"
+    import {letter} from "../../utils/apiManager/letterApi";
+    import {errorCode} from "../../utils/errorCode/errorCode";
 
     export default {
         name: 'letterPop',
@@ -91,13 +93,28 @@
 
         data() {
             return {
-                list: stamp,
+                list: [],
                 isShow: this.letterShow,
-                chooseStamp: stamp[0]
+                chooseStamp: ''
             }
         },
 
+        mounted() {
+            this.initStamp()
+        },
+
         methods: {
+            initStamp() {
+                letter.getUserStamp().then(res => {
+                    if (res.code == 1) {
+                        this.list = getUserStamp(res.data.records)
+                        this.chooseStamp = this.list[0]
+                    } else {
+                        errorCode(res)
+                    }
+                })
+            },
+
             chooseItem(stampName) {
 				letterInformation.info.stampId = stampName
                 this.chooseStamp = matchId(stampName)
@@ -108,7 +125,7 @@
                 if (option === 'sure') {
                     this.$emit('closeStamp', {
                         url: this.chooseStamp.url,
-						stampId: this.chooseStamp.stampId
+						stampId: this.chooseStamp.stampId[0]
                     })
                 } else {
                     this.$emit('closeStamp',{

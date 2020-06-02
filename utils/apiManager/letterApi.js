@@ -30,6 +30,10 @@ class LetterApi extends Request{
 	async submitDate(data) {
 		return getResult(await this.post('/letter/capsule', data))
 	}
+	//获取用户的邮票
+    async getUserStamp() {
+        return getResult(await this.get('/stamp/?page=1&pageSize=10'))
+    }
 }
 
 export const letter = new LetterApi()

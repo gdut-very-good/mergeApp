@@ -55,18 +55,14 @@
 
 <template>
     <div class="letter-container">
-		<view class="envelope-image" style="bottom: 10rem;" @click="submit">
-			<image			        
-				src="http://printer.noerror.xyz/appImage/gou.png"
-			>
-			</image>
-		</view>
-		<view class="envelope-image">
-			<image
-			        src="http://printer.noerror.xyz/appImage/envelope1.png"
-			        @click="jump('envelope')"
-			>
-			</image>
+<!--		<view class="envelope-image" style="bottom: 10rem;" @click="submit">-->
+<!--			<image			        -->
+<!--				src="http://printer.noerror.xyz/appImage/gou.png"-->
+<!--			>-->
+<!--			</image>-->
+<!--		</view>-->
+		<view class="envelope-image"  @click="jump('envelope')">
+			<image src="http://printer.noerror.xyz/appImage/envelope1.png"></image>
 		</view>
         <div class="bottom-con">
             <input class="letter-title" placeholder="信件标题" style="outline: none" v-model="title">
@@ -78,6 +74,7 @@
 <script>
     import {loginModules} from "@/utils/apiManager/loginApi";
 	import {letterInformation} from "@/utils/userInfo/letterInfo"
+    import {letter} from "../../../../utils/apiManager/letterApi";
 
     export default {
         name: 'letter',
@@ -97,7 +94,8 @@
             }
         },
 
-        mounted() {
+        onShow() {
+
 
         },
 
