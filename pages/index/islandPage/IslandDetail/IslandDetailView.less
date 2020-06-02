@@ -9,18 +9,23 @@
             //background: url('https://300img.rcywl.com/300data/res/ui/hero/233.bmp') repeat-x scroll cover center;
         }
         .container {
-            height: 100 * @px2rem;
+            height: 60px;
+            margin-bottom: -25px;
             .avatar-box {
                 .avatar {
-                    width: 120 * @px2rem;
-                    height: 120 * @px2rem;
+                    width: 60px;
+                    height: 60px;
                 }
+                transform: translateY(-50%);
                 position: relative;
-                transform: translateY(-60 * @px2rem);
                 .name {
-                    margin-top: 5 * @px2rem;
-                    font-size: 26 * @px2rem;
-                    padding-left: 10 * @px2rem;
+                    font-size: 16px;
+                    //margin-top: 5 * @px2rem;
+                    //font-size: 26 * @px2rem;
+                    //padding-left: 10 * @px2rem;
+                    position: relative;
+                    top: -8px;
+                    left: 3px;
                 }
             }
             .content {
@@ -32,7 +37,7 @@
         }
     }
     .body {
-        padding: 0 @paddingHorPx;
+        padding: 0 10px 0 5px;
     }
 
     .rua-box {

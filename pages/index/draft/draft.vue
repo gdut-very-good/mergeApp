@@ -5,9 +5,10 @@
             <view class="title">共{{draftData.length}}条草稿</view>
             <view class="body">
                 <view class="box" v-for="(draft, index) in draftData" :key="index">
-                    <text class="title">{{draft.paper}}</text>
-                    <text class="preview-content">{{draft.content}}</text>
-                    <text class="time">{{draft.sendTime}}</text>
+                    <view class="title">{{draft.header || 'paper'}}</view>
+                    <view class="preview-content">{{draft.content || '内容'}}</view>
+                    <text class="time">{{draft.sendTime || '2020-11-13'}}</text>
+                    <text class="delete" @click="deleteDraft(draft)">×</text>
                 </view>
             </view>
         </view>
@@ -16,18 +17,27 @@
 
 <script lang="js">
 	import {Request} from "../../../utils/apiManager/request";
+	import Api from "../../../utils/apiManager/Api";
 	export default {
 		data() {
         	return {
-				draftData : []
+				draftData : [{}, {}, {}]
             }
         },
         async mounted() {
-			this.draftData = await Request.get("/letter/draft");
-			let data = await Request.get("/star");
-			console.log(data);
-
-		}
+			let data = await new Request().get("/letter/draft");
+			this.draftData = data.data;
+			// let data = await Request.get("/star");
+			// console.log(data);
+		},
+        methods : {
+			deleteDraft({letterId}) {
+                Api.delete(`/letter/${letterId}`).then(async (res) => {
+					let data = await new Request().get("/letter/draft");
+					this.draftData = data.data;
+                })
+            }
+        }
 
 	}
 </script>
@@ -48,7 +58,7 @@
         }
         .container {
             > .title {
-                font-size: 16 * @px2rem;
+                font-size: 15px;
                 text-align: right;
                 box-sizing: border-box;
                 padding-right: 30 * @px2rem;
@@ -67,22 +77,32 @@
                     margin-bottom: 2 * @px2rem;
                     background: #ffffff;
                     > .title {
-                        font-size: 20 * @px2rem;
+                        font-size: 17px;
                         color: rgb(51, 51, 51);
                         margin-bottom: 5 * @px2rem;
                         margin-top: 10 * @px2rem;
                     }
                     > .preview-content {
-                        font-size: 20 * @px2rem;
+                        font-size: 15px;
                         color: rgb(148, 148, 148);
                         margin-bottom: 8 * @px2rem;
                     }
                     > .time {
-                        font-size: 15 * @px2rem;
+                        font-size: 15px;
                         color: rgb(161, 161, 161);
                         position: absolute;
-                        right: 40 * @px2rem;
+                        right: 80 * @px2rem;
                         top: 14 * @px2rem;
+                    }
+                    > .delete {
+                        position: absolute;
+                        z-index: 10;
+                        right: 5px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        font-size: 25px;
+                        padding: 0 5px;
+                        color: grey;
                     }
                 }
             }

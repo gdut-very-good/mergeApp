@@ -1,8 +1,8 @@
+
 <style scoped lang="less">
     .register-login-con {
         height: 100vh;
     }
-
     .bg {
         height: 100vh;
         width: 100%;
@@ -11,7 +11,6 @@
         left: 0;
         z-index: -1;
     }
-
     .bg::before {
         content: "";
         position: absolute;
@@ -22,11 +21,9 @@
         background-color: rgba(0, 0, 0, .6);
         z-index: 0;
     }
-
     .outer-con {
         height: auto;
     }
-
     .placeholderColor(@color) {
         input::-webkit-input-placeholder {
             color: @color;
@@ -41,7 +38,6 @@
             color: @color;
         }
     }
-
     .login-or-register {
         height: 2rem;
         width: 90%;
@@ -50,7 +46,6 @@
         display: flex;
         flex-direction: row;
         color: white;
-
         .app-logo {
             height: 2rem;
             width: 2rem;
@@ -60,17 +55,14 @@
             text-align: center;
             font-size: 0.8rem;
         }
-
         .swtich {
             width: calc(100% - 2rem);
             text-align: right;
             font-size: 0.8rem;
         }
     }
-
     .login-con {
         margin-top: 1rem;
-
         .user-name {
             width: 90%;
             margin: auto;
@@ -79,7 +71,6 @@
             font-size: 0.8rem;
             .placeholderColor(white);
         }
-
         .user-name-input {
             height: 2rem;
             width: 90%;
@@ -88,8 +79,6 @@
             color: white;
         }
     }
-
-
     .login-btn {
         height: 2.5rem;
         width: 90%;
@@ -143,15 +132,14 @@
     import {loginModules} from "@/utils/apiManager/loginApi";
     import {userInfo} from '@/utils/userInfo/user'
     import {errorCode} from "../../utils/errorCode/errorCode";
-
     export default {
         name: 'login',
         data() {
             return {
                 logShow: true,
                 log: {
-                    username: '',
-                    password: ''
+                    username: 'huange7',
+                    password: '123456'
                 },
                 sign: {
                     username: '',
@@ -222,7 +210,6 @@
                     })
                 }
             },
-
             switchLogin() {
                 this.logShow = !this.logShow
             }

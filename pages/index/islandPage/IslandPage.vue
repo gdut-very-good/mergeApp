@@ -14,7 +14,7 @@
             </view>
         </view>
         <view class="container">
-             <island-item v-for="(data, index) in [1,2,3]" v-bind="data"/>
+             <island-item v-for="(data, index) in starIsland" v-bind="data"/>
         </view>
     </view>
 
@@ -24,7 +24,8 @@
 <script lang="js">
     // import Title from "@/components/title/Title";
 	import IslandItem from "../../../components/islandItem/IslandItem";
-	// import Api from "@/utils/apiManager/Api";
+	import Api from "../../../utils/apiManager/Api";
+
     // this.$store.default.state.imageBaseUrl +
 	export default {
     	name : "IslandPage",
@@ -46,22 +47,21 @@
 				this.buttonMsg = '漂流'
             },
             toIsland(userId) {
-				this.$router.push({
-					name : 'detail',
-					query : {
-						userId
-					}
-				})
+				uni.navigateTo({
+                    url : `IslandDetail/IslandDetail?userId=${userId}`
+                })
             }
         },
         mounted() {
-    		// Api.get(`/user/${1}`).then((data) => {
-    		// 	this.myInfo = data;
-            // });
-    		// Api.get("/star").then((data) => {
-    		// 	console.log(data);
-            //     this.starIsland = data.records;
-			// });
+    		Api.get(`/user/${1}`).then(({data}) => {
+    			console.log(data);
+    			this.myInfo = data;
+            });
+    		Api.get("/star").then(({data}) => {
+    			console.log(data);
+                this.starIsland = data.records;
+			});
+    		console.log(this)
 		}
 	}
 </script>

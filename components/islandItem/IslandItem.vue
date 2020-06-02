@@ -16,14 +16,17 @@
         <view class="name">
             {{username}}的海岛
         </view>
+<!--        <island-detail></island-detail>-->
     </view>
 
 </template>
 
 <script lang="js">
-    export default {
+    import IslandDetail from "../../pages/index/islandPage/IslandDetail/IslandDetail";
+	export default {
         name : 'IslandItem',
-        props : {
+		components: {IslandDetail},
+		props : {
         	countInLine : {
                 default : 2
             },
@@ -67,7 +70,7 @@
                 //     }
                 // })
 				uni.navigateTo({
-					url: 'IslandDetail',
+					url: `/pages/index/islandPage/IslandDetail/IslandDetail?userId=${this.userId}`,
 					fail(e) {
 						console.log(e);
 					}
