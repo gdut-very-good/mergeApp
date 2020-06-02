@@ -13,7 +13,7 @@
             top: 0.2rem;
         }
     }
-    
+
     .envelope-image {
     	display: flex;
     	align-items: center;
@@ -26,14 +26,14 @@
     	border-radius: 50%;
     	background-color: rgb(203,176,68);
     	overflow: hidden;
-    	
+
     	image {
     		height: 2rem;
     		width: 2rem;
     	}
-    	
+
     }
-    
+
     .letter-title {
         @letter_height: 2.5rem;
         line-height: @letter_height;
@@ -41,14 +41,14 @@
         font-size: 1rem;
         border-bottom: 1px solid black;
     }
-    
+
     .letter-content {
     	padding-top: 1rem;
         height: 10rem;
     }
-    
+
     .choose-envelope-con {
-    
+
     }
 
 </style>
@@ -83,10 +83,10 @@
             return {
                 title: '',
                 content: '',
-    
+
             }
         },
-    
+
         watch: {
             'title': function(value) {
     			letterInformation.info.header = value
@@ -96,12 +96,13 @@
             }
         },
         mounted() {
-        	let letterId = this.$route.query.letterId;
+			let letterId = this.$route.query.letterId;
 			let letterInfo = getStaticDraftInfo();
 			if (letterId) {
 				this.title = letterInfo.header;
 				this.content = letterInfo.content;
 			}
+		},
         onShow() {
 
         },
