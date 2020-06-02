@@ -98,7 +98,7 @@
 							})
 						}, 1000)
                     } else {
-                        errorCode()
+                        errorCode(res)
                     }
                 })
             }

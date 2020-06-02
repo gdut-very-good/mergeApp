@@ -23,9 +23,9 @@
 	}
 	
 	.head-image {
+		border: 1px solid black;
 		height: 2.5rem;
 		width: 2.5rem;
-		background-color: green;
 		border-radius: 50%;
 		margin-right: 0.5rem;
 	}
@@ -64,7 +64,7 @@
 					{{item.group}}
 				</view>
 			</view>
-			<view class="friend-list-container" v-for="friend in item.data" @click="jump(friend.userId)">
+			<view class="friend-list-container" v-for="friend in item.data" @click="jump(friend)">
 				<view class="inner-container">
 					<image class="head-image" :src="'http://island.hellochaos.cn/uploads/' + friend.photo"></image>
 					<view class="right-bar">
@@ -97,7 +97,7 @@
             }
         },
 
-        mounted() {
+		mounted() {
             letter.getBoomFriend().then(res => {
                 if (res.code == 1) {
                     this.boomFriend = this.reFormat(res.data.records)
@@ -148,10 +148,9 @@
                 return 'none'
             },
 
-            jump(userId) {
-				console.log(userId)
+            jump(info) {
                 uni.navigateTo({
-                	url: '/pages/index/letter/writerLetter/letterMessage/letterMessage?userId=' + userId,
+                	url: '/pages/index/letter/writerLetter/letterMessage/letterMessage?userId=' + info.userId + '&nickname=' + info.nickname  ,
 					fail(res) {
 						console.log(res)
 					}
