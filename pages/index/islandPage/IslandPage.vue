@@ -6,7 +6,7 @@
         </view>
         <view class="container-box" style="">
             <view class="avatar-box">
-                <image :src=" myInfo.photo" class="avatar"></image>
+                <image :src="this.imageUrl + myInfo.photo" class="avatar"></image>
             </view>
             <view class="rua-box" @click="toIsland(myInfo.userId)">
                 <text class="first">我的海岛</text>
@@ -25,7 +25,8 @@
     // import Title from "@/components/title/Title";
 	import IslandItem from "../../../components/islandItem/IslandItem";
 	import Api from "../../../utils/apiManager/Api";
-
+	import {userInfo} from "../../../utils/userInfo/user";
+	import {myApi} from "../../../utils/apiManager/myApi";
     // this.$store.default.state.imageBaseUrl +
 	export default {
     	name : "IslandPage",
@@ -50,10 +51,11 @@
 				uni.navigateTo({
                     url : `IslandDetail/IslandDetail?userId=${userId}`
                 })
-            }
+            },
+
         },
         mounted() {
-    		Api.get(`/user/${1}`).then(({data}) => {
+    		Api.get(`/user/${userInfo.Info.userId}`).then(({data}) => {
     			console.log(data);
     			this.myInfo = data;
             });

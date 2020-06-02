@@ -16,10 +16,10 @@ class user {
 			word: 255
 		}
 	}
-	
+
 	initInfo(userInfo) {
 		this.Info = userInfo
 	}
 }
 
-export const userInfo = new user()
+export const userInfo = new user();

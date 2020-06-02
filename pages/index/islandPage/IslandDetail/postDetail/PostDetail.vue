@@ -89,15 +89,15 @@
             },
 			post() {
 				this.inputVisibility = true;
-				// Api.post('/reply/', {
-                //     beReplyId : this.beReplyId ? this.beReplyId : null,
-                //     content : this.inputVal,
-                //     postId : this.postId
-                // }).then(() => {
-				// 	Api.get(`/reply/post/${this.postId}`).then((data) => {
-				// 		this.commentData = data;
-				// 	});
-                // });
+				Api.post('/reply/', {
+                    beReplyId : this.beReplyId ? this.beReplyId : null,
+                    content : this.inputVal,
+                    postId : this.postId
+                }).then(() => {
+					Api.get(`/reply/post/${this.postId}`).then(({data}) => {
+						this.commentData = data;
+					});
+                });
             }
         },
         mounted() {
@@ -109,7 +109,7 @@
                     this.userInfo = data;
                 });
             });
-    		Api.get(`/reply/${posterId}`).then(({data}) => {
+    		Api.get(`/reply/post/${posterId}`).then(({data}) => {
     			this.commentData = data || [];
             })
 		}

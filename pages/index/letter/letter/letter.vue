@@ -78,13 +78,15 @@
 <script>
     import {loginModules} from "@/utils/apiManager/loginApi";
 	import {letterInformation} from "@/utils/userInfo/letterInfo"
+	import {getStaticDraftInfo} from "../../../../utils/draftInfo/info";
 
     export default {
         name: 'letter',
         data() {
             return {
                 title: '',
-                content: ''
+                content: '',
+
             }
         },
 
@@ -98,7 +100,12 @@
         },
 
         mounted() {
-
+        	let letterId = this.$route.query.letterId;
+			let letterInfo = getStaticDraftInfo();
+			if (letterId) {
+				this.title = letterInfo.header;
+				this.content = letterInfo.content;
+			}
         },
 
         methods: {

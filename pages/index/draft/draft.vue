@@ -4,11 +4,12 @@
         <view class="container">
             <view class="title">共{{draftData.length}}条草稿</view>
             <view class="body">
-                <view class="box" v-for="(draft, index) in draftData" :key="index">
+                <view class="box" v-for="(draft, index) in draftData" :key="index" @click="edit(draft)">
                     <view class="title">{{draft.header || 'paper'}}</view>
                     <view class="preview-content">{{draft.content || '内容'}}</view>
                     <text class="time">{{draft.sendTime || '2020-11-13'}}</text>
                     <text class="delete" @click="deleteDraft(draft)">×</text>
+<!--                    <letter></letter>-->
                 </view>
             </view>
         </view>
@@ -18,7 +19,10 @@
 <script lang="js">
 	import {Request} from "../../../utils/apiManager/request";
 	import Api from "../../../utils/apiManager/Api";
+	import Letter from "../letter/letter/letter";
+	import {updateDraftInfo} from "../../../utils/draftInfo/info";
 	export default {
+		components: {Letter},
 		data() {
         	return {
 				draftData : [{}, {}, {}]
@@ -36,8 +40,17 @@
 					let data = await new Request().get("/letter/draft");
 					this.draftData = data.data;
                 })
+            },
+			edit(draft) {
+				updateDraftInfo(draft);
+				uni.navigateTo({
+					url : `../letter/letter/letter?letterId=${draft.letterId}`,
+					fail(res) {
+						console.log(res)
+					}
+				});
             }
-        }
+        },
 
 	}
 </script>
