@@ -48,7 +48,7 @@
 						url : `IslandDetail/IslandDetail?userId=${data.userId}`
 					})
                 } else {
-                	
+
                 }
             },
 			inputFocus() {
