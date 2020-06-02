@@ -138,8 +138,8 @@
             return {
                 logShow: true,
                 log: {
-                    username: '',
-                    password: ''
+                    username: 'huange7',
+                    password: '123456'
                 },
                 sign: {
                     username: '',

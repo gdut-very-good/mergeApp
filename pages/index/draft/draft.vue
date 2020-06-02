@@ -5,10 +5,10 @@
             <view class="title">共{{draftData.length}}条草稿</view>
             <view class="body">
                 <view class="box" v-for="(draft, index) in draftData" :key="index">
-                    <view class="title">{{draft.paper || 'paper'}}</view>
+                    <view class="title">{{draft.header || 'paper'}}</view>
                     <view class="preview-content">{{draft.content || '内容'}}</view>
                     <text class="time">{{draft.sendTime || '2020-11-13'}}</text>
-                    <text class="delete">×</text>
+                    <text class="delete" @click="deleteDraft(draft)">×</text>
                 </view>
             </view>
         </view>
@@ -17,6 +17,7 @@
 
 <script lang="js">
 	import {Request} from "../../../utils/apiManager/request";
+	import Api from "../../../utils/apiManager/Api";
 	export default {
 		data() {
         	return {
@@ -24,11 +25,19 @@
             }
         },
         async mounted() {
-			// this.draftData = await Request.get("/letter/draft");
+			let data = await new Request().get("/letter/draft");
+			this.draftData = data.data;
 			// let data = await Request.get("/star");
 			// console.log(data);
-
-		}
+		},
+        methods : {
+			deleteDraft({letterId}) {
+                Api.delete(`/letter/${letterId}`).then(async (res) => {
+					let data = await new Request().get("/letter/draft");
+					this.draftData = data.data;
+                })
+            }
+        }
 
 	}
 </script>

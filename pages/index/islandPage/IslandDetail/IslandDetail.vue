@@ -60,7 +60,7 @@
 
 <script lang="js">
     import Post from "../../../../components/post/Post.vue";
-	// import Api from "@/utils/apiManager/Api";
+	import Api from "../../../../utils/apiManager/Api";
 	// import addIcon from "../../../../images/icon/add-post.png";
     export default {
         name : "IslandDetail",
@@ -92,21 +92,17 @@
 			changeImage() {
         		console.log(this.$refs);
                 this.$refs.fileInput.$el.click();
-
             }
         },
         mounted() {
-        	// this.userId = this.$route.query.userId;
-        	// Api.get(`/user/${this.userId}`, {
-
-         //    }).then((data) => {
-         //    	console.log(data);
-        	// 	this.userInfo = data;
-         //    });
-        	// Api.get(`/post/all/${this.userId}`).then((data) => {
-        	// 	this.postList = data;
-        	// 	console.log(data)
-         //    })
+        	this.userId = this.$route.query.userId;
+        	Api.get(`/user/${this.userId}`).then(({data}) => {
+        		this.userInfo = data;
+            });
+        	Api.get(`/post/all/${this.userId}`).then(({data}) => {
+        		this.postList = data;
+        		console.log(data)
+            })
 		}
 	}
 </script>

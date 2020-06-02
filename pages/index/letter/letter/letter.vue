@@ -13,7 +13,7 @@
             top: 0.2rem;
         }
     }
-	
+
 	.envelope-image {
 		display: flex;
 		align-items: center;
@@ -26,12 +26,12 @@
 		border-radius: 50%;
 		background-color: rgb(203,176,68);
 		overflow: hidden;
-		
+
 		image {
 			height: 2rem;
 			width: 2rem;
 		}
-		
+
 	}
 
     .letter-title {
@@ -56,7 +56,7 @@
 <template>
     <div class="letter-container">
 		<view class="envelope-image" style="bottom: 10rem;" @click="submit">
-			<image			        
+			<image
 				src="http://printer.noerror.xyz/appImage/gou.png"
 			>
 			</image>
@@ -103,7 +103,7 @@
 
         methods: {
             jump(module) {
-				console.log('nihao1')
+				console.log('nihao1');
 				uni.navigateTo({
 					url: './envelope/envelope'
 				})

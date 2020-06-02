@@ -10,9 +10,11 @@
 </template>
 
 <script lang="js">
-    export default {
+    import PostDetail from "../../pages/index/islandPage/IslandDetail/postDetail/PostDetail";
+	export default {
         name : "Post",
-        props : {
+		components: {PostDetail},
+		props : {
         	content : {
         		default : "这是我写的一个帖子，帖子内容是这样的帖子内容是这样的帖子内容是这样的帖子内容是这样的帖子内容是这样的帖子内容是这样的"
             },
@@ -31,12 +33,12 @@
         },
         methods : {
 			toPostView() {
-                this.$router.push({
-                    name : 'poster',
-                    query : {
-                    	postId : this.postId
-                    }
-                })
+				uni.navigateTo({
+					url: `postDetail/PostDetail?postId=${this.postId}`,
+					fail(res) {
+						console.log(res)
+					}
+				});
             }
         }
     }

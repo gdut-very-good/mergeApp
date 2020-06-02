@@ -40,11 +40,11 @@ export class Request {
                 },
                 success: function (res) {
                     if (!Authorization) {
-                        console.log(res.header)
+                        console.log(res.header);
                         uni.setStorage({
                             key: 'Authorization',
                             data: res.header.authorization
-                        })
+                        });
                         Authorization = res.header.Authorization || res.header.authorization
                         console.log('头部', res.header.Authorization)
                     }

@@ -79,6 +79,18 @@
             }
         },
         {
+            "path": "pages/index/islandPage/IslandDetail/IslandDetail",
+            "style": {
+                "navigationBarTitleText": "海岛"
+            }
+        },
+        {
+            "path": "pages/index/islandPage/IslandDetail/postDetail/PostDetail",
+            "style": {
+                "navigationBarTitleText": "动态"
+            }
+        },
+        {
             "path": "pages/index/userInfoPage/userInfo",
             "style": {
                 "navigationBarTitleText": "我的"
@@ -146,7 +158,7 @@
                 "text": "草稿"
             },
             {
-                "pagePath": "pages/index/islandPage/islandPage",
+                "pagePath": "pages/index/islandPage/IslandPage",
                 "iconPath": "static/island.png",
                 "selectedIconPath": "static/island.png",
                 "text": "海岛"

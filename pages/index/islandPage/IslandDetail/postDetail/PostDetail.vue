@@ -61,6 +61,8 @@
 <script lang="js">
     // import Api from "@/utils/apiManager/Api";
 
+	import Api from "../../../../../utils/apiManager/Api";
+
 	export default {
     	name : "postDetail",
         data() {
@@ -69,9 +71,9 @@
                 inputVisibility : true,
                 postDetail : {},
                 userInfo : {
-					photo : 'https://pic3.zhimg.com/50/v2-14d7c94ddc5205e630a05c56f2a90b93_qhd.jpg'
+					photo : ''
 				},
-				commentData : [{}, {}, {}],
+				commentData : [],
                 beReplyId : 0,
 				postId : 0
             }
@@ -99,15 +101,17 @@
             }
         },
         mounted() {
-    		// let posterId = this.$route.query.postId;
-    		// this.postId = posterId;
-    		// Api.get(`/post/${posterId}`).then((data) => {
-    		// 	this.postDetail = data;
-    		// 	Api.get(`/user/${data.userId}`).then((data) => {
-            //         this.userInfo = data;
-            //     });
-            //
-            // });
+    		let posterId = this.$route.query.postId;
+    		this.postId = posterId;
+    		Api.get(`/post/${posterId}`).then(({data}) => {
+    			this.postDetail = data;
+    			Api.get(`/user/${data.userId}`).then(({data}) => {
+                    this.userInfo = data;
+                });
+            });
+    		Api.get(`/reply/${posterId}`).then(({data}) => {
+    			this.commentData = data || [];
+            })
 		}
 	}
 </script>
