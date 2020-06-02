@@ -8,12 +8,12 @@
         justify-content: center;
         .style-content {
             height: 100%;
-            width: 15%;
+            width: 20%;
             border: 1px solid black;
             text-align: center;
             line-height: 2.5rem;
             margin-right: 0.3rem;
-            font-size: 0.4rem;
+            font-size: 0.8rem;
         }
     }
 

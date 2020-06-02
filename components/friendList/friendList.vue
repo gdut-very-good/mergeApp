@@ -66,7 +66,7 @@
 			</view>
 			<view class="friend-list-container" v-for="friend in item.data" @click="jump(friend)">
 				<view class="inner-container">
-					<image class="head-image" :src="'http://island.hellochaos.cn/uploads/' + friend.photo"></image>
+					<image class="head-image" :src="'http://island.hellochaos.cn/uploads/'+friend.photo"></image>
 					<view class="right-bar">
 						<view class="name">{{friend.nickname}}</view>
 						<view class="city">
@@ -93,6 +93,7 @@
 
         data() {
             return {
+            	test: 'postion.png',
                 boomFriend: []
             }
         },

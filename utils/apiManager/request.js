@@ -1,13 +1,13 @@
 let baseUrl = 'http://island.hellochaos.cn/island/api/v1';
 let Authorization = ''
-uni.getStorage({
-    key: 'Authorization',
-    success: function (res) {
-        console.log(res.data)
-        console.log(res.data);
-        Authorization = res.data
-    }
-});
+// uni.getStorage({
+//     key: 'Authorization',
+//     success: function (res) {
+//         console.log(res.data)
+//         console.log(res.data);
+//         Authorization = res.data
+//     }
+// });
 
 export class Request {
     get(url) {
@@ -39,14 +39,14 @@ export class Request {
                     "Authorization": Authorization
                 },
                 success: function (res) {
-                    if (!Authorization) {
-                        console.log(res.header);
-                        uni.setStorage({
-                            key: 'Authorization',
-                            data: res.header.authorization
-                        });
+                    if (!Authorization || Authorization !== res.header.authorization) {
+                        // console.log(res.header)
+                        // uni.setStorage({
+                        //     key: 'Authorization',
+                        //     data: res.header.authorization
+                        // })
                         Authorization = res.header.Authorization || res.header.authorization
-                        console.log('头部', res.header.Authorization)
+                        console.log('头部', Authorization )
                     }
                     //返回什么就相应的做调整
                     resolve(res.data)

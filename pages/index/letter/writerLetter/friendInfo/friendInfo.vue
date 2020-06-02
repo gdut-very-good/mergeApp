@@ -1,16 +1,12 @@
 <style scoped lang="less">
-    @import "../../../../../utils/css/mixin";
+    @bgColor: rgb(242,242,242);
     .friend-con {
         height: 100vh;
         background-color: @bgColor;
     }
 
-    .writeLetter-title {
-        .title;
-    }
-
     .bottom-con {
-        @bottomHeight: 4rem;
+        @bottomHeight: 6rem;
         @itemNum: 4;
         height: @bottomHeight;
         background-color: white;
@@ -24,8 +20,8 @@
             height: 100%;
             width: 30%;
             .icon {
-                height: 2rem;
-                width: 2rem;
+                height: 4rem;
+                width: 4rem;
                 border-radius: 50%;
             }
         }
@@ -34,39 +30,38 @@
             width: 70%;
             .item {
                 height: 25%;
-                font-size: 0.4rem;
+                font-size: 0.8rem;
                 line-height: @bottomHeight/@itemNum;
             }
         }
     }
 
     .write-btn {
-        line-height: 1.5rem;
+        line-height: 2.5rem;
         background-color: white;
         text-align: center;
-        font-size: 0.5rem;
+        font-size: 0.8rem;
         margin-top: 0.5rem;
     }
+
+
 
 </style>
 
 <template>
-    <div class="friend-con">
-        <div class="writeLetter-title">
-            笔友信息
-        </div>
-        <div class="bottom-con">
-            <div class="head-icon">
+    <view class="friend-con">
+        <view class="bottom-con">
+            <view class="head-icon">
                 <image class="icon" :src="imageUrl"></image>
-            </div>
-            <div class="info-con">
-                <div class="item" v-for="item in info">
+            </view>
+            <view class="info-con">
+                <view class="item" v-for="item in info">
                     {{item.name}}{{item.content}}
-                </div>
-            </div>
-        </div>
-        <div class="write-btn">写信</div>
-    </div>
+                </view>
+            </view>
+        </view>
+        <view class="write-btn">删除笔友</view>
+    </view>
 </template>
 
 <script>
@@ -96,23 +91,30 @@
                         name: '距离:',
                         content: '2000km'
                     },
-                ]
+                ],
+                userId: ''
             }
         },
 
-        mounted() {
+        onLoad(option) {
+            this.userId = option.id
+            console.log(this.userId)
             this.getInfo()
+        },
+
+        mounted() {
+
         },
 
         methods: {
             getInfo() {
-                letter.getSingleInfo(this.$route.query.userId).then(res => {
+                letter.getSingleInfo(this.userId).then(res => {
+                    console.log(res)
                     if (res.code == 1) {
                         this.initInfo(res.data)
                     } else {
-                        errorCode()
+                        errorCode(res)
                     }
-
                 })
             },
 

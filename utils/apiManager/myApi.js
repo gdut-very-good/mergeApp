@@ -26,5 +26,9 @@ class my extends Request{
     async uploadHeadIcon(data) {
         return getResult(await this.upload('/user/upload', data))
     }
+    //查询用户信息
+    async getUserInfo(userId) {
+        return getResult(await this.get('/user/' + userId))
+    }
 }
 export const myApi = new my()

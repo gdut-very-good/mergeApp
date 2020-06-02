@@ -69,7 +69,7 @@
 
 <script>
     import {letter} from "@/utils/apiManager/letterApi";
-    import {stamp} from "@/utils/stampStyle/stampStyle";
+    import {getUserStamp, initStampId} from "@/utils/stampStyle/stampStyle";
     import {formatDate} from "@/utils/date/date";
     import letterPop from "@/components/letterPop/letterPop";
     import {loginModules} from "@/utils/apiManager/loginApi";
@@ -90,28 +90,32 @@
                 contactList: null,
                 isShow: false,
                 stampShow: false,
-                stampUrl: stamp[0].url,
-				stampId: stamp[0].stampId,
+                stampUrl: '',
+				stampId: '',
                 friendName: null
             }
         },
 
         mounted() {
+            console.log('重新请求邮票')
             this.getContactList()
-            // let data = {
-            //     username: 'huange7',
-            //     password: '123456'
-            // }
-            // loginModules.login(data).then(res => {
-            //
-            //     if (res.code == 1) {
-            //
-            //     }
-            //     alert(res.message)
-            // })
+            this.initData()
         },
 
         methods: {
+            initData() {
+                letter.getUserStamp().then(res => {
+                    if (res.code == 1) {
+                        initStampId(res.data.records)
+                        const temp =  getUserStamp(res.data.records)
+                        this.stampUrl = temp[0].url
+                        this.stampId = temp[0].stampId[0]
+                    } else {
+                        errorCode(res)
+                    }
+                })
+            },
+
             getContactList() {
                 letter.getBoomFriend().then(res => {
                     this.contactList = res.data.records
@@ -145,16 +149,19 @@
             },
 
             submit() {
-				console.log(letterInformation.info)
 				letterInformation.info.sendTime = formatDate()
 				letterInformation.info.stampId = this.stampId
                 const reqData = letterInformation.info
-                console.log(reqData)
                 letter.submitLetter(reqData).then(res => {
 					if (res.code == 1) {
 						uni.showToast({
 							title: '发送成功'
 						})
+                        setTimeout(() => {
+                            uni.navigateBack({
+                                delta: 3
+                            })
+                        }, 500)
 					} else {
 						errorCode(res)
 					}
