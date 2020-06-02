@@ -2,7 +2,7 @@
 	.register-login-con {
 		height: 100vh;
 	}
-	
+
 	.bg {
 		height: 100vh;
 		width: 100%;
@@ -11,7 +11,7 @@
 		left: 0;
 		z-index: -1;
 	}
-	
+
 	.bg::before {
 	    content: "";
 	    position: absolute;
@@ -22,11 +22,11 @@
 	    background-color: rgba(0, 0, 0, .6);
 	    z-index: 0;
 	}
-	
+
 	.outer-con {
 		height: auto;
 	}
-	
+
 	.placeholderColor(@color) {
 	  input::-webkit-input-placeholder{
 	    color:@color;
@@ -41,7 +41,7 @@
 	    color:@color;
 	  }
 	}
-	
+
 	.login-or-register {
 		height: 2rem;
 		width: 90%;
@@ -50,7 +50,7 @@
 		display: flex;
 		flex-direction: row;
 		color: white;
-		
+
 		.app-logo {
 			height: 2rem;
 			width: 2rem;
@@ -60,17 +60,17 @@
 			text-align: center;
 			font-size: 0.8rem;
 		}
-		
+
 		.swtich {
 			width: calc(100% - 2rem);
 			text-align: right;
 			font-size: 0.8rem;
 		}
 	}
-    
+
 	.login-con {
 		margin-top: 1rem;
-		
+
 		.user-name {
 			width: 90%;
 			margin: auto;
@@ -79,7 +79,7 @@
 			font-size: 0.8rem;
 			.placeholderColor(white);
 		}
-		
+
 		.user-name-input {
 			height: 2rem;
 			width: 90%;
@@ -88,8 +88,8 @@
 			color: white;
 		}
 	}
-	
-	
+
+
 	.login-btn {
 		height: 2.5rem;
 		width: 90%;
@@ -129,8 +129,8 @@
 				<input type="password" class="user-name-input" placeholder="密码"  v-model="sign.confirm">
 			</view>
 		</view>
-		<view 
-			class="login-btn" 
+		<view
+			class="login-btn"
 			:style="changeColor"
 			@click="toIndex(logShow?'log':'reg')"
 		>
@@ -176,10 +176,10 @@
 					};
 					loginModules.login(data).then(res => {
 					    if (res.code == 1) {
-							userInfo.initInfo(res.data)
+							userInfo.initInfo(res.data);
 							uni.showToast({
 								title: '登录成功'
-							})
+							});
 					        uni.switchTab({
 								url: '../index/letter/writerLetter/writerLetter',
 								fail: (res) => {
@@ -192,7 +192,7 @@
 					})
 				} else {
 					if (this.sign.confirm !== this.sign.password) {
-						alert('两次密码输入不一致')
+						alert('两次密码输入不一致');
 						return
 					}
 					const data = {
@@ -212,7 +212,7 @@
 					})
 				}
             },
-        
+
 			switchLogin() {
 				this.logShow = !this.logShow
 			}
