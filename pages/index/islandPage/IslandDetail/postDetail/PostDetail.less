@@ -5,6 +5,8 @@
 }
 .PostDetailView {
     position: relative;
+    height: 100%;
+    margin-bottom: 30px;
     .post-box {
         @paddingHor();
         padding-top: 20 * @px2rem;
@@ -21,8 +23,8 @@
                     align-items: center;
                     justify-content: center;
                     .avatar {
-                        width: 70 * @px2rem;
-                        height: 70 * @px2rem;
+                        width: 50px;
+                        height: 50px;
                         border-radius: 50%;
                         margin-right: 13 * @px2rem;
                     }
@@ -59,8 +61,9 @@
                 flex:  0 0 auto;
                 margin-right: 12 * @px2rem;
                 .avatar {
-                    width: 60 * @px2rem;
-                    height: 60 * @px2rem;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
                 }
             }
             .content {
@@ -72,14 +75,27 @@
                     justify-content: space-between;
                     flex-direction: row;
                     align-items: center;
+                    position: relative;
                     margin-bottom: 10 * @px2rem;
+                    color: #4d4d4d;
+                    height: 30px;
                     .reply {
-                        padding: 4 * @px2rem 7 * @px2rem;
+                        height: 30px;
                         background-color: rgb(255, 201, 20);
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        right: 0;
+                        font-size: 18px;
+                        padding: 3px 8px ;
                     }
                 }
                 .bottom {
+                    font-size: 17px;
+                    .content {
 
+                    }
                 }
             }
             margin-bottom: 15 * @px2rem;
@@ -88,12 +104,12 @@
 
     .input-box {
         position: fixed;
-        bottom: 120px;
+        bottom: 0px;
         right: 0;
         width: 100%;
         z-index: 101;
         input {
-            height: 60px;
+            height: 30px;
             width: 100%;
             border: 1px solid black;
             box-sizing: border-box;
@@ -115,7 +131,10 @@
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
-            padding: 0 16px;
+            padding: 0 10px;
+            position: relative;
+            margin-top: 10px;
+            margin-bottom: 10px;
             .box {
                 display: flex;
                 flex-direction: row;
@@ -127,22 +146,32 @@
                 flex-direction: row;
                 justify-content: start;
                 align-items: center;
+                font-size: 16px;
+                padding: 0 5px;
+                position: relative;
+                left: -5px;
             }
-            .span:nth-of-type(1) {
-                height: 80px;
-                width: 60px;
-                font-size: 60px;
-
+            .span {
+                height: 40px;
+                width: 30px;
+                margin-right: 5px;
+                font-size: 30px;
+                line-height: 40px;
             }
-            .span:nth-of-type(2) {
+            .post {
                 height: 100%;
             }
             .button {
-                height: 60px;
-                padding: 0 10px;
+                position: absolute;
+                right: 10px;
+                height: 36px;
+                padding: 0 8px;
                 box-sizing: border-box;
                 background-color: rgb(254, 204, 24);
                 color: #010101;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }
