@@ -2,7 +2,7 @@
     <view class="wrapper IslandPageView">
         <view class="header-box">
             <input type="text" placeholder="搜索海岛" @focus="inputFocus" @blur="inputBlur" class="input">
-            <button class="button">{{buttonMsg}}</button>
+            <button class="button" @click="handleClick">{{buttonMsg}}</button>
         </view>
         <view class="container-box" style="">
             <view class="avatar-box">
@@ -41,6 +41,16 @@
             }
         },
         methods : {
+    		async handleClick() {
+                if(this.buttonMsg === '漂流') {
+                    let {data} = await Api.get("/user/random");
+					uni.navigateTo({
+						url : `IslandDetail/IslandDetail?userId=${data.userId}`
+					})
+                } else {
+                	
+                }
+            },
 			inputFocus() {
 				this.buttonMsg = '搜索'
             },

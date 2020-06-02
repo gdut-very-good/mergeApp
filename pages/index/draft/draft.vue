@@ -25,7 +25,7 @@
 		components: {Letter},
 		data() {
         	return {
-				draftData : [{}, {}, {}]
+				draftData : []
             }
         },
         async mounted() {

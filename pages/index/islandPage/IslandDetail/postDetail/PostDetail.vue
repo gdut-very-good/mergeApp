@@ -4,7 +4,7 @@
             <view class="avatar-container">
                 <view class="left">
                     <view class="avatar-box">
-                        <image :src="userInfo.photo || 'https://pic3.zhimg.com/50/v2-14d7c94ddc5205e630a05c56f2a90b93_qhd.jpg'" class="avatar"/>
+                        <image :src="imageUrl + userInfo.photo" class="avatar"/>
                         <text class="name">{{userInfo.username || 'Tom'}}</text>
                     </view>
                 </view>
@@ -13,21 +13,21 @@
 <!--                </view>-->
             </view>
             <view class="content">
-                {{postDetail.content || '这是一条动态这是一条动态这是一条动态这是一条动态这是一条动态'}}
+                {{postDetail ? postDetail.content : '这是一条动态这是一条动态这是一条动态这是一条动态这是一条动态'}}
             </view>
         </view>
         <view class="comment-box" v-show="inputVisibility">
             <view class="comment" v-for="(comment, index) in commentData" :key="index">
                 <view class="avatar-box">
-                    <img :src="comment.avatar  || 'https://pic3.zhimg.com/50/v2-14d7c94ddc5205e630a05c56f2a90b93_qhd.jpg'" alt="" class="avatar"/>
+                    <img :src="imageUrl + comment.replyPhoto" alt="" class="avatar"/>
                 </view>
                 <view class="content">
                     <view class="top">
-                        <text class="name">{{'tom'}}</text>
-                        <button class="reply" @click="beReplyId = comment.replyId">回复</button>
+                        <text class="name">{{comment.replyName}} {{comment.beReplyName ? ' 回复 ' + comment.beReplyName : ''}}</text>
+                        <button class="reply" @click="reply(comment)">回复</button>
                     </view>
                     <view class="bottom">
-                        <text class="content">{{comment.content || '这是回复这是回复这是回复这是回复这是回复这是回复这是回复'}}</text>
+                        <text class="content">{{comment.reply.content}}</text>
                     </view>
                 </view>
             </view>
@@ -84,11 +84,17 @@
             }
         },
         methods : {
+    		reply(comment) {
+    			console.log(comment)
+				this.beReplyId = comment.reply.replyId;
+                this.inputVisibility = false;
+            },
 			onInputFocus() {
                 this.inputVisibility = false;
             },
 			post() {
 				this.inputVisibility = true;
+				console.log(this.beReplyId);
 				Api.post('/reply/', {
                     beReplyId : this.beReplyId ? this.beReplyId : null,
                     content : this.inputVal,
@@ -105,8 +111,10 @@
     		this.postId = posterId;
     		Api.get(`/post/${posterId}`).then(({data}) => {
     			this.postDetail = data;
+    			console.log(data);
     			Api.get(`/user/${data.userId}`).then(({data}) => {
                     this.userInfo = data;
+                    console.log(this.userInfo)
                 });
             });
     		Api.get(`/reply/post/${posterId}`).then(({data}) => {

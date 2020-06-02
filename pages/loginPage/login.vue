@@ -185,7 +185,7 @@
                     })
                 } else {
                     if (this.sign.confirm !== this.sign.password) {
-                        alert('两次密码输入不一致')
+                        alert('两次密码输入不一致');
                         return
                     }
                     const data = {

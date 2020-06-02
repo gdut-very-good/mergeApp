@@ -3,7 +3,7 @@
 <!--        <input type="file" ref="fileInput" @change="handleFileChange" style="display: none">-->
         <view class="header" v-show="!ruaVisibility">
             <view class="bg" :style="{
-				'background-image' : `url(${'rua'})`,
+				'background-image' : `url(${this.userInfo ? this.imageUrl + this.userInfo.background : ''})`,
 				'background-size' : 'cover',
 				'max-height' : '300px'
             }" @click="fileUpload"></view>
@@ -69,7 +69,7 @@
                 avatar : "https://img.nga.178.com/attachments/mon_201801/29/3gQ5-icl2Z1fT3cSm8-m8.jpg",
 				ruaVisibility : false,
                 userInfo : {},
-                postList : [{}, {}, {}],
+                postList : [],
                 userId : 0,
 				content : '',
                 myInfo : {}
@@ -86,20 +86,13 @@
                 Api.post("/post/", {
                 	content : this.content
                 }).then((res) => {
-					Api.get(`/post/all/${this.userId}`).then(({data}) => {
-						this.postList = data;
-					});
 					this.ruaVisibility = !this.ruaVisibility;
+					this.$nextTick(() => {
+						Api.get(`/post/all/${this.userId}`).then(({data}) => {
+							this.postList = data;
+						});
+                    });
                 })
-            },
-            handleFileChange(e) {
-        		let file = e.target.files[0];
-        		console.log(file);
-        		Api.upload('/user/upload/background', {
-					file
-                }).then((res) => {
-                    console.log(res);
-                });
             },
 
 			changeImage() {
@@ -107,6 +100,10 @@
                 this.$refs.fileInput.$el.click();
             },
 			fileUpload() {
+				if (!this.showAdd) {
+					return;
+				}
+				let vm = this;
 				uni.chooseImage({
 					count: 1, //默认9
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
@@ -117,9 +114,9 @@
 						// const tempFilePaths = 'file:http://192.168.1.109:8080/b548e24e-b604-4b81-95a5-871cb3c26d36'
 						console.log(tempFilePaths);
 						console.log(typeof tempFilePaths);
-						Api.upload('/user/upload/background',tempFilePaths).then(res => {
-							console.log(res);
-							if (res.code === 1) {
+						Api.upload('/user/upload/background',tempFilePaths).then(({data}) => {
+							vm.userInfo.background = data;
+							if (data.code === 1) {
 								uni.showToast({
 									title: '上传成功',
 									icon: 'none'
@@ -133,6 +130,7 @@
         mounted() {
         	this.userId = this.$route.query.userId;
         	Api.get(`/user/${this.userId}`).then(({data}) => {
+        		console.log(data)
         		this.userInfo = data;
         		this.myInfo = userInfo.Info;
             });

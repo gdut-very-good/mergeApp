@@ -109,7 +109,7 @@
 
         methods: {
             jump(module) {
-    			console.log('nihao1')
+    			console.log('nihao1');
     			uni.navigateTo({
     				url: './envelope/envelope'
     			})

@@ -12,6 +12,7 @@ let Authorization = ''
 export class Request {
     get(url) {
         return new Promise(resolve => {
+            console.log(Authorization);
             uni.request({
                 url: baseUrl + url,
                 method: "GET",
@@ -45,7 +46,7 @@ export class Request {
                         //     key: 'Authorization',
                         //     data: res.header.authorization
                         // })
-                        Authorization = res.header.Authorization || res.header.authorization
+                        Authorization = res.header.Authorization || res.header.authorization || Authorization;
                         console.log('头部', Authorization )
                     }
                     //返回什么就相应的做调整
