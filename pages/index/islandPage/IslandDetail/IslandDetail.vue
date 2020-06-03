@@ -155,20 +155,22 @@
 				});
 			},
         },
-        mounted() {
-        	this.userId = this.$route.query.userId;
-        	Api.get(`/user/${this.userId}`).then(({data}) => {
-        		console.log(data);
-        		this.userInfo = data;
-        		this.myInfo = userInfo.Info;
-            });
-        	Api.get(`/post/all/${this.userId}`).then(({data}) => {
-        		this.postList = data;
-            });
+
+		onLoad(options) {
+			console.log(options);
+			this.userId = options.userId;
+			Api.get(`/user/${this.userId}`).then(({data}) => {
+				console.log(data);
+				this.userInfo = data;
+				this.myInfo = userInfo.Info;
+			});
+			Api.get(`/post/all/${this.userId}`).then(({data}) => {
+				this.postList = data;
+			});
 			Api.get("/star").then(({data}) => {
 				this.starIsland = data.records;
 			});
-		}
+		},
 	}
 </script>
 
