@@ -4,19 +4,19 @@ class _Api extends Request{
 	constructor() {
 		super();
 	}
-	@RequestInterceptor
+	@ResponseInterceptor
 	get(url) {
 		return super.get(url);
 	}
-	@RequestInterceptor
+	@ResponseInterceptor
 	post(url, data) {
 		return super.post(url, data);
 	}
-	@RequestInterceptor
+	@ResponseInterceptor
 	delete(url, data) {
 		return super.delete(url, data);
 	}
-	@RequestInterceptor
+	@ResponseInterceptor
 	upload(url, filepath) {
 		return super.upload(url, filepath);
 	}
@@ -36,7 +36,7 @@ function reLogin() {
 		})
 	}, 500)
 }
-function RequestInterceptor(request, key, config) {
+function ResponseInterceptor(request, key, config) {
 	let cache = request[key];
 	config.value = function(...args) {
 		return cache(...args).then((res) => {
