@@ -17,7 +17,6 @@
 </template>
 
 <script lang="js">
-	import {Request} from "../../../utils/apiManager/request";
 	import Api from "../../../utils/apiManager/Api";
 	import Letter from "../letter/letter/letter";
 	import {updateDraftInfo} from "../../../utils/draftInfo/info";
@@ -29,10 +28,8 @@
             }
         },
         async mounted() {
-			let data = await new Request().get("/letter/draft");
+			let data = await Api.get("/letter/draft");
 			this.draftData = data.data;
-			// let data = await Request.get("/star");
-			// console.log(data);
 		},
         methods : {
 			deleteDraft({letterId}) {
@@ -86,7 +83,7 @@
                     box-sizing: border-box;
                     position: relative;
                     padding-left: 25 * @px2rem;
-                    padding-right: 40 * @px2rem;
+                    padding-right: 60 * @px2rem;
                     margin-bottom: 2 * @px2rem;
                     background: #ffffff;
                     > .title {
