@@ -21,14 +21,21 @@
         <view class="body" v-show="!ruaVisibility">
             <Post v-for="(data, index) in postList" v-bind="data"/>
         </view>
-        <view class="pos" @click="ruaVisibility = true" v-show="!ruaVisibility && showAdd" style="
-            width: 60px; height: 60px; position: fixed;
+        <view class="pos" v-show="!ruaVisibility" style="
+            width: 60px; height: 130px; position: fixed;
             z-index: 1; bottom: 60px; right: 20px;
-            background: #ffffff; display: flex;
-            flex-direction: row; justify-content: center; align-items: center;
+            display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
             border-radius: 50%;
             ">
-            <image src="https://s1.ax1x.com/2020/05/17/YRITQU.png" style="width: 100%; height: 100%"/>
+            <image :src="starSet.has(this.userInfo.userId) ? 'https://s1.ax1x.com/2020/06/03/taGns0.png' : 'https://s1.ax1x.com/2020/06/03/taGmMq.png'" style="
+                width: 60px; height: 60px; margin-bottom: 10px; background: #ffffff;"
+                   @click="star" v-show="this.userInfo.userId !== this.myInfo.userId && this.userInfo.userId && this.myInfo.userId"
+            ></image>
+            <image src="https://s1.ax1x.com/2020/05/17/YRITQU.png" style="
+                width: 60px; height: 60px; background: #ffffff; " @click="ruaVisibility = true"
+                   v-show="showAdd"
+            />
         </view>
         <view class="rua-box" v-show="ruaVisibility" style="
             position: fixed;
@@ -60,6 +67,8 @@
 	import Api from "../../../../utils/apiManager/Api";
 	import {userInfo} from "../../../../utils/userInfo/user";
 	import {myApi} from "../../../../utils/apiManager/myApi";
+	// https://s1.ax1x.com/2020/06/03/taGmMq.png
+	// https://s1.ax1x.com/2020/06/03/taGns0.png
     export default {
         name : "IslandDetail",
         components: {Post},
@@ -72,13 +81,17 @@
                 postList : [],
                 userId : 0,
 				content : '',
-                myInfo : {}
+                myInfo : {},
+				starIsland : []
             }
         },
         computed : {
             showAdd() {
             	console.log(this.userInfo.userId === this.myInfo.userId);
-            	return this.userInfo.userId === this.myInfo.userId;
+            	return this.userInfo.userId === this.myInfo.userId && this.myInfo.userId && this.userInfo.userId;
+            },
+            starSet() {
+            	return new Set(this.starIsland.map(island => island.userId))
             }
         },
         methods : {
@@ -94,7 +107,22 @@
                     });
                 })
             },
-
+			star() {
+                Api.post("/star/", {
+                	islandId : this.userInfo.userId
+                }).then((res) => {
+                	if (res.code === "1") {
+						Api.get("/star").then(({data}) => {
+							this.starIsland = data.records;
+						});
+                    } else {
+                		uni.showToast({
+                            title : res.message,
+                            icon : 'none'
+                        })
+                    }
+                })
+            },
 			changeImage() {
         		console.log(this.$refs);
                 this.$refs.fileInput.$el.click();
@@ -130,14 +158,16 @@
         mounted() {
         	this.userId = this.$route.query.userId;
         	Api.get(`/user/${this.userId}`).then(({data}) => {
-        		console.log(data)
+        		console.log(data);
         		this.userInfo = data;
         		this.myInfo = userInfo.Info;
             });
         	Api.get(`/post/all/${this.userId}`).then(({data}) => {
         		this.postList = data;
             });
-
+			Api.get("/star").then(({data}) => {
+				this.starIsland = data.records;
+			});
 		}
 	}
 </script>

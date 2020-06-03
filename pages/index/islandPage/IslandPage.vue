@@ -1,7 +1,7 @@
 <template>
     <view class="wrapper IslandPageView">
         <view class="header-box">
-            <input type="text" placeholder="搜索海岛" @focus="inputFocus" @blur="inputBlur" class="input">
+            <input type="text" v-model="inputVal" placeholder="搜索海岛" @focus="inputFocus" @blur="inputBlur" class="input">
             <button class="button" @click="handleClick">{{buttonMsg}}</button>
         </view>
         <view class="container-box" style="">
@@ -35,9 +35,14 @@
         },
         data() {
     		return {
-    			buttonMsg : '漂流',
                 myInfo : {},
-                starIsland : []
+                starIsland : [],
+				inputVal : ""
+            }
+        },
+        computed : {
+			buttonMsg() {
+				return this.inputVal.length ? '搜索' : '漂流'
             }
         },
         methods : {
@@ -48,14 +53,19 @@
 						url : `IslandDetail/IslandDetail?userId=${data.userId}`
 					})
                 } else {
-
+                	console.log(this.inputVal);
+                    if (this.inputVal) {
+						uni.navigateTo({
+							url : `search/search?wd=${this.inputVal}`
+						})
+                    }
                 }
             },
 			inputFocus() {
-				this.buttonMsg = '搜索'
+				// this.buttonMsg = '搜索'
             },
             inputBlur() {
-				this.buttonMsg = '漂流'
+				// this.buttonMsg = '漂流'
             },
             toIsland(userId) {
 				uni.navigateTo({
@@ -64,7 +74,7 @@
             },
 
         },
-        mounted() {
+		onShow() {
     		Api.get(`/user/${userInfo.Info.userId}`).then(({data}) => {
     			console.log(data);
     			this.myInfo = data;

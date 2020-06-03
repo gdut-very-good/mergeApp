@@ -1,5 +1,5 @@
 let baseUrl = 'http://island.hellochaos.cn/island/api/v1';
-let Authorization = ''
+let Authorization = '';
 // uni.getStorage({
 //     key: 'Authorization',
 //     success: function (res) {
