@@ -13,6 +13,7 @@ class LoginApi extends Request{
     async changeUserInfo(data) {
         return getResult(await this.put('/user/', data))
     }
+
 }
 
 export const loginModules = new LoginApi()

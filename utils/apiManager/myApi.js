@@ -30,5 +30,13 @@ class my extends Request{
     async getUserInfo(userId) {
         return getResult(await this.get('/user/' + userId))
     }
+    //设置消息已读
+    async setMessageRead(messageId) {
+        return getResult(await this.put('/notice/read/' + messageId))
+    }
+    //获取信件信息
+    async getSingleMessage(messageId) {
+        return getResult(await this.get('/notice/' + messageId))
+    }
 }
 export const myApi = new my()

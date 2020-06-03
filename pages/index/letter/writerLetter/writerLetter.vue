@@ -1,7 +1,7 @@
 <template>
     <view class="writeLetter-container">
         <view class="box-add">
-            <view class="add-circle" @click="openBtn">+</view>
+            <view class="add-circle" @click="openBtn">{{showMenu?'-':'+'}}</view>
         </view>
         <view class="box" v-if="showMenu">
             <view class="other-item-shudong" @click="jump('shudong')">树洞</view>
@@ -32,16 +32,13 @@
             }
         },
 
-        mounted() {
+        onShow() {
+            this.showMenu = false
         },
 
         methods: {
             changeModule(data) {
-                if (data.module === 'shudongList') {
-                    this.show = false
-                } else {
-                    this.show = true
-                }
+                this.show = data.module !== 'shudongList';
             },
 
             jump(module) {
@@ -59,7 +56,7 @@
             },
 
             openBtn() {
-                this.showMenu = true
+                this.showMenu = !this.showMenu
             }
         }
     }
@@ -67,7 +64,7 @@
 
 <style scoped lang="less">
     .writeLetter-container {
-        padding-bottom: 1.6rem;
+       height: 100%;
     }
 
     .bottom-con {

@@ -170,13 +170,8 @@
                                 title: '登录成功'
                             })
                             setTimeout(() => {
-                                uni.switchTab({
+                                uni.reLaunch({
                                     url: '/pages/index/letter/writerLetter/writerLetter',
-                                    success: () => {
-                                    },
-                                    fail: (res) => {
-                                        console.log(res)
-                                    }
                                 })
                             }, 500)
                         } else {

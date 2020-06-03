@@ -1,6 +1,8 @@
 <style scoped lang="less">
     @bgColor: rgb(242,242,242);
     .bottom-con {
+        width: 90%;
+        margin: auto;
         .message-card {
             @messageBox: 4rem;
             @item: 2;
@@ -23,12 +25,13 @@
                 height: 100%;
                 text-align: left;
                 line-height: @messageBox / @item;
-                width: 65%;
+                width: 50%;
             }
 
             .message-title view {
-                width: calc(100% - 65%);
+                width: calc(100% - 50%);
                 font-size: 0.7rem;
+                text-align: center;
             }
 
             .message-content {
@@ -52,7 +55,12 @@
 <template>
     <view class="message-container">
         <view class="bottom-con">
-            <view class="message-card" v-for="message in messageList">
+            <view
+                    class="message-card"
+                    v-for="message in messageList"
+                    :v-key="message.noticeId"
+                    @click="readMessage(message.noticeId)"
+            >
                 <view class="message-title">
                     <text class="message-title-inner">{{message.title}}</text>
                     <view>{{message.time}}</view>
@@ -84,7 +92,8 @@
             }
         },
 
-        mounted() {
+        onShow() {
+            console.log('重新请求数据')
             this.getNotice()
         },
 
@@ -96,6 +105,12 @@
                     } else {
                         errorCode()
                     }
+                })
+            },
+
+            readMessage(noticeId) {
+                uni.navigateTo({
+                    url: '/pages/index/userInfoPage/message/readMessage/readMessage?id='+noticeId
                 })
             }
         }

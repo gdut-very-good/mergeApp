@@ -98,14 +98,23 @@
             }
         },
 
+		onShow() {
+        	console.log('nhao')
+		},
+
+		onLoad() {
+			console.log('执行onload')
+		},
+
+
 		mounted() {
+			console.log('重新请求数据')
             letter.getBoomFriend().then(res => {
                 if (res.code == 1) {
                     this.boomFriend = this.reFormat(res.data.records)
 					console.log(this.boomFriend)
                 }
             })
-
         },
 
         methods: {

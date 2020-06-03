@@ -34,6 +34,18 @@ class LetterApi extends Request{
     async getUserStamp() {
         return getResult(await this.get('/stamp/?page=1&pageSize=10'))
     }
+    //删除笔友
+    async deleteFriend(data) {
+        return getResult(await this.delete('/friend/'+ data))
+    }
+    //把信件设置为已读
+    async hasRead() {
+        return getResult(await this.delete('/friend/'+ data))
+    }
+    //查询单个信件内容
+    async getSingleLetter(data) {
+        return getResult(await this.get('/letter/' + data))
+    }
 }
 
 export const letter = new LetterApi()

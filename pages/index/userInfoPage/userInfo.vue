@@ -119,7 +119,7 @@
                 </view>
                 <view class="middle-bar">
                     <view class="user-name">{{name}}</view>
-                    <view class="user-letter">今天写信了吗</view>
+                    <view class="user-letter">个性签名:{{signature}}</view>
                 </view>
                 <view class="right-bar">
                     <image src="http://printer.noerror.xyz/appImage/right_arrow.png" class="right-arrow"></image>
@@ -157,6 +157,9 @@
             name() {
                 return userInfo.Info.username
             },
+            signature() {
+                return userInfo.Info.signature
+            }
             // headUrl () {
             //     return userInfo.Info.photo
             // }
@@ -208,7 +211,7 @@
                             if (res.cancel) {
                                 //点击取消,默认隐藏弹框
                             } else {
-                                Authorization = ''
+                                uni.clearStorageSync()
                                 uni.navigateTo({
                                     url: '/pages/loginPage/login',
                                     fail(res) {

@@ -4,7 +4,7 @@ class letterInfo {
 		    "receiverId": null,
 		    "sendTime":"",
 		    "content":"",
-		    "paper":"",
+		    "paper":"貌美如花",
 			"header":"标题",
 			"stampId": null,
 		    "isSend":true,

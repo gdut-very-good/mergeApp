@@ -1,6 +1,13 @@
 <style scoped lang="less">
+    @bgColor: rgb(242, 242, 242);
+    .letter-message {
+        height: 100vh;
+        width: 100%;
+        background-color: @bgColor;
+    }
 
     .bottom-con {
+        height: 100%;
         width: 90%;
         margin: auto;
 
@@ -11,50 +18,59 @@
             text-align: center;
         }
 
+    }
+
+    .active {
+        position: absolute;
+        white-space: nowrap;
+        height: 100%;
+        transition: all .35s ease-in-out;
+        text-align: center;
+
         .letter-card {
+            border-radius: 6px;
             position: relative;
-            border: 1px solid black;
+            display: inline-block;
+            height: 65%;
+            width: 70%;
+            background-color: white;
+            box-shadow: 10px 10px 5px #888888;
+            margin: 20% 15% auto 15%;
+            background-image: url("../../../../../static/maobi.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 40%;
 
-            .stamp {
+            .stamp-con {
+                display: block;
+                height: 3.5rem;
+                width: 3rem;
+                margin-left: 1rem;
+            }
+
+            .title {
                 position: absolute;
-                top: 0;
-                right: 0;
-                width: calc(25% - 0.4rem);
-                height: 5rem;
-            }
-
-            .letter-title {
-                @titleHeight: 2rem;
-                height: @titleHeight;
-                width: 50%;
-                padding-left: 0.4rem;
-                line-height: @titleHeight;
+                bottom: 0;
+                height: 2rem;
+                width: 100%;
+                text-align: center;
                 font-size: 0.8rem;
+                color: #7fa3e4;
             }
 
-            .letter-content {
-                height: 6rem;
-                width: 70%;
-                font-size: 0.8rem;
-                margin-left: 0.4rem;
-                overflow: scroll;
-            }
-
-            .receiver-con {
+            .send-time {
                 display: flex;
-                flex-direction: row;
-                height: 1.5rem;
-                margin: 0 0.2rem 0 0.2rem;
                 align-items: center;
+                justify-content: center;
+                white-space: normal;
+                position: absolute;
+                height: 1.3rem;
+                padding: 0 1rem 0 1rem;
+                background-color: #7fa3e4;
+                color: white;
+                right: 0.5rem;
+                top: 0.5rem;
                 font-size: 0.5rem;
-
-                .receiver-name {
-                    line-height: 1rem;
-                    height: 100%;
-                    width: 50%;
-                    margin-left: 1rem;
-                }
-
             }
         }
     }
@@ -69,12 +85,12 @@
 
     .submit-btn {
         position: fixed;
-        bottom: 15rem;
+        bottom: 10rem;
         right: 2rem;
         height: 2.5rem;
         width: 2.5rem;
         border-radius: 50%;
-        background-color: rgb(203, 176, 68);
+        background-color: #ffc300;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -102,20 +118,24 @@
         <view class="submit-btn" @click="showFriend">
             <image class="save-image" src="../../../../../static/person.png"></image>
         </view>
-        <view class="bottom-con">
+        <view class="bottom-con" @touchmove.stop.prevent = "doNothing">
             <view class="no-letter" v-if="!isShow">你们还没有书信来往</view>
-            <view v-for="item in letterList" style="padding-top: 0.5rem;position: relative" v-if="isShow">
-<!--                <image src="../../../../../static/letter/envelope.png" class="envelope"></image>-->
-                <view class="letter-card">
-                    <image class="stamp" :src="item.stampId.url"></image>
-                    <view class="letter-title">{{item.letter.header}}</view>
-                    <view class="letter-content">
-                        {{item.letter.content}}
-                    </view>
-                    <view class="receiver-con">
-                        <view class="receiver-name">{{item.nickname}}</view>
-                        <view class="receiver-name" style="text-align: right">{{item.letter.sendTime}}</view>
-                    </view>
+            <view
+                    class="active"
+                    id="activeX"
+                    :style="'left:' + leftValue"
+            >
+                <view
+                        class="letter-card"
+                        v-for="item in letterList"
+                        style="padding-top: 0.5rem;position: relative"
+                        @touchstart.stop="touchStart"
+                        @touchend.stop="touchEnd"
+                        @click="readLetter(item.letter.letterId)"
+                >
+                    <image :src="item.stampId.url" class="stamp-con"></image>
+                    <view class="title">{{item.letter.header}}</view>
+                    <view class="send-time">{{item.nickname}}</view>
                 </view>
             </view>
         </view>
@@ -135,7 +155,12 @@
                 letterList: [],
                 name: '',
                 isShow: true,
-                userId: ''
+                userId: '',
+                startX: '',
+                endX: '',
+                element: '',
+                index: 0,
+                leftValue: 0
             }
         },
 
@@ -146,15 +171,20 @@
             this.name = options.nickname
             this.userId = options.userId
             this.getLetterInfo(options)
+            this.initWidth()
+            this.element = document.getElementsByClassName('active')[0]
         },
 
         methods: {
+            initWidth() {
+                let bg = document.getElementsByClassName('bottom-con')[0]
+                console.log(bg.style.width)
+            },
             getLetterInfo(info) {
                 letter.getFriendLetter(info.userId).then(res => {
                     console.log(res)
                     if (res.code == 1) {
                         if (res.data.records.length !== 0) {
-                            //todo stampId可能会有未定义的情况
                             this.letterList = res.data.records
                             this.reformat()
                         } else {
@@ -169,7 +199,7 @@
             },
 
             reformat() {
-                for(let i = 0; i < this.letterList.length; i++) {
+                for (let i = 0; i < this.letterList.length; i++) {
                     this.letterList[i].stampId = matchId(this.letterList[i].stampName)
                     letter.getSingleInfo(this.letterList[i].receiverId).then(res => {
                         this.letterList[i].receiverId = res.data
@@ -181,7 +211,41 @@
                 uni.navigateTo({
                     url: '/pages/index/letter/writerLetter/friendInfo/friendInfo?id=' + this.userId
                 })
-            }
+            },
+
+            touchStart(e) {
+                e.preventDefault() // 阻止默认事件，滚动等
+                this.startX = e.touches[0].clientX // 记录滑动开始的位置
+            },
+
+            touchEnd(e) {
+                const {windowWidth} = uni.getSystemInfoSync();
+                const _this = this
+                e.preventDefault() // 阻止默认事件，滚动等
+                this.endX = e.changedTouches[0].clientX
+                //大于0说明向左滑动，小于0说明向右滑动
+                if (this.startX - this.endX > 40) {
+                    this.index++
+                    this.leftValue = -this.index * windowWidth + 'px'
+                } else if (this.startX - this.endX < -40){
+                    this.index--
+                    this.leftValue = -this.index * windowWidth + 'px'
+                }
+                this.startX = 0
+                this.endX = 0
+            },
+
+            doNothing() {
+                console.log('nihao')
+            },
+
+            readLetter(letterId) {
+                uni.navigateTo({
+                    url: '/pages/index/letter/writerLetter/letterMessage/readLetter/readLetter?id=' + letterId,
+                })
+            },
+
+
         }
     }
 </script>

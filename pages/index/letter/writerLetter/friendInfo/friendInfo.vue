@@ -60,7 +60,7 @@
                 </view>
             </view>
         </view>
-        <view class="write-btn">删除笔友</view>
+        <view class="write-btn" @click="deleteFri">删除笔友</view>
     </view>
 </template>
 
@@ -102,10 +102,6 @@
             this.getInfo()
         },
 
-        mounted() {
-
-        },
-
         methods: {
             getInfo() {
                 letter.getSingleInfo(this.userId).then(res => {
@@ -124,6 +120,35 @@
                 this.info[2].content = res.city
                 this.info[3].content = res.nickname
                 this.imageUrl = 'http://island.hellochaos.cn/uploads/' + res.photo
+            },
+
+            deleteFri() {
+                const _this = this
+                uni.showModal({
+                    title: '提示',
+                    content: '你确定要删除好友吗',
+                    success (res) {
+                        if (res.cancel) {
+                            //点击取消,默认隐藏弹框
+                        } else {
+                            letter.deleteFriend(_this.userId).then(res => {
+                                if (res.code == 1) {
+                                    uni.showToast({
+                                        title: '删除成功'
+                                    })
+                                    setTimeout(() => {
+                                        uni.reLaunch({
+                                            url: '/pages/index/letter/writerLetter/writerLetter',
+                                        })
+                                    }, 500)
+                                } else {
+                                    errorCode(res)
+                                }
+
+                            })
+                        }
+                    }
+                })
             }
         }
     }

@@ -1,13 +1,47 @@
 let baseUrl = 'http://island.hellochaos.cn/island/api/v1';
 let Authorization = ''
-// uni.getStorage({
-//     key: 'Authorization',
-//     success: function (res) {
-//         console.log(res.data)
-//         console.log(res.data);
-//         Authorization = res.data
-//     }
-// });
+uni.getStorage({
+    key: 'Authorization',
+    success: function (res) {
+        console.log(res.data)
+        console.log(res.data);
+        Authorization = res.data
+    }
+});
+
+/**
+ * 固化auth
+ * @param header
+ */
+function intercept(header) {
+    const auth = header.Authorization || header.authorization
+    uni.getStorage({
+        key: 'Authorization',
+        success: function (res) {
+            //如果auth存在说明更换了一个人登录，此时重置auth
+            if (auth) {
+                Authorization = auth
+                uni.clearStorageSync()
+                uni.setStorage({
+                    key: 'Authorization',
+                    data: auth
+                });
+            } else {
+                //解决热更新清空auth问题
+                Authorization = res.data
+            }
+        },
+        fail: function () {
+            //获取失败可能是注销了登录，或者是首次登录
+            uni.setStorage({
+                key: 'Authorization',
+                data: auth
+            });
+            Authorization = auth
+        }
+    });
+
+}
 
 export class Request {
     get(url) {
@@ -39,15 +73,7 @@ export class Request {
                     "Authorization": Authorization
                 },
                 success: function (res) {
-                    if (!Authorization || Authorization !== res.header.authorization) {
-                        // console.log(res.header)
-                        // uni.setStorage({
-                        //     key: 'Authorization',
-                        //     data: res.header.authorization
-                        // })
-                        Authorization = res.header.Authorization || res.header.authorization
-                        console.log('头部', Authorization )
-                    }
+                    intercept(res.header)
                     //返回什么就相应的做调整
                     resolve(res.data)
                 },

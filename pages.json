@@ -131,6 +131,24 @@
             "style": {
                 "navigationBarTitleText": "树洞信息"
             }
+        },
+        {
+            "path": "pages/index/letter/writerLetter/friendInfo/friendInfo",
+            "style": {
+                "navigationBarTitleText": "树洞信息"
+            }
+        },
+        {
+            "path": "pages/index/letter/writerLetter/letterMessage/readLetter/readLetter",
+            "style": {
+                "navigationBarTitleText": "信件阅读"
+            }
+        },
+        {
+            "path": "pages/index/userInfoPage/message/readMessage/readMessage",
+            "style": {
+                "navigationBarTitleText": "消息"
+            }
         }
     ],
     "globalStyle": {
