@@ -34,7 +34,7 @@
         methods : {
 			deleteDraft({letterId}) {
                 Api.delete(`/letter/${letterId}`).then(async (res) => {
-					let data = await new Request().get("/letter/draft");
+					let data = Api.get("/letter/draft");
 					this.draftData = data.data;
                 })
             },
