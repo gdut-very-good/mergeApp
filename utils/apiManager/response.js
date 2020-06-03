@@ -4,7 +4,7 @@ export function getResult(data, options) {
         uni.showToast({
             title: '请登录后操作',
             icon: 'none'
-        })
+        });
         setTimeout(() => {
             uni.navigateTo({
                 url: '/pages/loginPage/login',

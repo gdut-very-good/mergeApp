@@ -6,8 +6,8 @@
     }" @click="toDetail">
         <view class="container" :style="{
             	// backgroundImage : `url(${this.background ? this.$store.default.state.imageBaseUrl + this.background : this.$store.default.state.defaultImageUrl})`,
-            	background : '',
-            	backgroundSize : 'cover'
+            	'background-image' : `url(${this.imageUrl + background})`,
+            	'background-size' : 'cover'
             }">
             <view class="content">
                 {{introduce}}
@@ -47,6 +47,9 @@
             },
             userId : {
         		require : true
+            },
+            photo : {
+
             }
         },
         computed : {

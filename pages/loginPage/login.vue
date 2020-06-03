@@ -165,10 +165,10 @@
                     };
                     loginModules.login(data).then(res => {
                         if (res.code == 1) {
-                            userInfo.initInfo(res.data)
+                            userInfo.initInfo(res.data);
                             uni.showToast({
                                 title: '登录成功'
-                            })
+                            });
                             setTimeout(() => {
                                 uni.reLaunch({
                                     url: '/pages/index/letter/writerLetter/writerLetter',
@@ -180,7 +180,7 @@
                     })
                 } else {
                     if (this.sign.confirm !== this.sign.password) {
-                        alert('两次密码输入不一致')
+                        alert('两次密码输入不一致');
                         return
                     }
                     const data = {

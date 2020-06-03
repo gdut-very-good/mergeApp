@@ -150,6 +150,12 @@
                 "navigationBarTitleText": "消息"
             }
         }
+        ,{
+            "path" : "pages/index/islandPage/search/search",
+            "style": {
+                "navigationBarTitleText": "搜索"
+            }
+        }
     ],
     "globalStyle": {
         "navigationBarTextStyle": "white",

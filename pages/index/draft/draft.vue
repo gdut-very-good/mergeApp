@@ -4,11 +4,12 @@
         <view class="container">
             <view class="title">共{{draftData.length}}条草稿</view>
             <view class="body">
-                <view class="box" v-for="(draft, index) in draftData" :key="index">
+                <view class="box" v-for="(draft, index) in draftData" :key="index" @click="edit(draft)">
                     <view class="title">{{draft.header || 'paper'}}</view>
                     <view class="preview-content">{{draft.content || '内容'}}</view>
                     <text class="time">{{draft.sendTime || '2020-11-13'}}</text>
                     <text class="delete" @click="deleteDraft(draft)">×</text>
+<!--                    <letter></letter>-->
                 </view>
             </view>
         </view>
@@ -16,19 +17,19 @@
 </template>
 
 <script lang="js">
-	import {Request} from "../../../utils/apiManager/request";
 	import Api from "../../../utils/apiManager/Api";
+	import Letter from "../letter/letter/letter";
+	import {updateDraftInfo} from "../../../utils/draftInfo/info";
 	export default {
+		components: {Letter},
 		data() {
         	return {
-				draftData : [{}, {}, {}]
+				draftData : []
             }
         },
         async mounted() {
-			let data = await new Request().get("/letter/draft");
+			let data = await Api.get("/letter/draft");
 			this.draftData = data.data;
-			// let data = await Request.get("/star");
-			// console.log(data);
 		},
         methods : {
 			deleteDraft({letterId}) {
@@ -36,8 +37,17 @@
 					let data = await new Request().get("/letter/draft");
 					this.draftData = data.data;
                 })
+            },
+			edit(draft) {
+				updateDraftInfo(draft);
+				uni.navigateTo({
+					url : `../letter/letter/letter?letterId=${draft.letterId}`,
+					fail(res) {
+						console.log(res)
+					}
+				});
             }
-        }
+        },
 
 	}
 </script>
@@ -73,7 +83,7 @@
                     box-sizing: border-box;
                     position: relative;
                     padding-left: 25 * @px2rem;
-                    padding-right: 40 * @px2rem;
+                    padding-right: 60 * @px2rem;
                     margin-bottom: 2 * @px2rem;
                     background: #ffffff;
                     > .title {
