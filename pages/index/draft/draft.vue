@@ -36,9 +36,11 @@
 			console.log("show");
         },
 		onShow: function() {
-			Api.get("/letter/draft").then(data => {
-				this.draftData = data.data;
-			});
+			setTimeout(() => {
+				Api.get("/letter/draft").then(data => {
+					this.draftData = data.data;
+				});
+            }, 100)
 		},
         methods : {
 			deleteDraft({letterId}) {
