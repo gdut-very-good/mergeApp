@@ -1,6 +1,8 @@
 <style scoped lang="less">
     @bgColor: rgb(242,242,242);
     .bottom-con {
+        width: 90%;
+        margin: auto;
         .message-card {
             @messageBox: 3rem;
             @item: 2;
@@ -48,7 +50,7 @@
                     <text class="message-title-inner">{{tree.title}}</text>
                     <view style="font-size: 0.7rem">{{tree.createTime}}</view>
                 </view>
-                <view class="message-content">{{tree.content}}</view>
+                <view class="message-content">{{content(tree.content)}}</view>
             </view>
         </view>
     </view>
@@ -94,6 +96,14 @@
                     }
                     this.treeList = res.data
                 })
+            },
+
+            content(value) {
+                if (value.length < 0) {
+                    return value
+                } else {
+                    return value.substring(0, 20) + '...'
+                }
             }
 
         }

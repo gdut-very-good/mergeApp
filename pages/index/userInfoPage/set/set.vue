@@ -169,7 +169,7 @@
                         content: '',
                     },
                     {
-                        name: '绑定邮箱',
+                        name: '邮箱',
                         module: 'mail',
                         content: '',
                     },

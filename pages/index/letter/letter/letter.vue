@@ -24,7 +24,7 @@
 		height: 2.5rem;
 		width: 2.5rem;
 		border-radius: 50%;
-		background-color: rgb(203,176,68);
+		background-color: #ffc300;
 		overflow: hidden;
 		
 		image {
@@ -55,12 +55,6 @@
 
 <template>
     <div class="letter-container">
-<!--		<view class="envelope-image" style="bottom: 10rem;" @click="submit">-->
-<!--			<image			        -->
-<!--				src="http://printer.noerror.xyz/appImage/gou.png"-->
-<!--			>-->
-<!--			</image>-->
-<!--		</view>-->
 		<view class="envelope-image"  @click="jump('envelope')">
 			<image src="http://printer.noerror.xyz/appImage/envelope1.png"></image>
 		</view>
@@ -75,13 +69,15 @@
     import {loginModules} from "@/utils/apiManager/loginApi";
 	import {letterInformation} from "@/utils/userInfo/letterInfo"
     import {letter} from "../../../../utils/apiManager/letterApi";
+    import {errorCode} from "../../../../utils/errorCode/errorCode";
 
     export default {
         name: 'letter',
         data() {
             return {
                 title: '',
-                content: ''
+                content: '',
+                draftId: '',
             }
         },
 
@@ -94,17 +90,36 @@
             }
         },
 
-        onShow() {
+        onLoad(option) {
+            if (option.letterId) {
+                this.draftId = option.letterId
+                this.getDraftContent()
+            }
+        },
 
-
+        beforeDestroy() {
+            if (this.title.length !== 0 || this.content.length !== 0) {
+                console.log('新建留有东西')
+            }
         },
 
         methods: {
             jump(module) {
-				console.log('nihao1')
 				uni.navigateTo({
 					url: './submitEnvelope/submitEnvelope'
 				})
+            },
+
+            getDraftContent() {
+                letter.getSingleLetter(this.draftId).then(res => {
+                    console.log(res)
+                    if (res.code == 1) {
+                        this.content = res.data.letter.content
+                        this.title = res.data.letter.header
+                    } else {
+                        errorCode(res)
+                    }
+                })
             }
         }
 

@@ -5,6 +5,7 @@ export function getResult(data, options) {
             title: '请登录后操作',
             icon: 'none'
         });
+        uni.clearStorageSync()
         setTimeout(() => {
             uni.navigateTo({
                 url: '/pages/loginPage/login',

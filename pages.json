@@ -99,13 +99,13 @@
         {
             "path": "pages/index/userInfoPage/message/message",
             "style": {
-                "navigationBarTitleText": "消息管理"
+                "navigationBarTitleText": "通知"
             }
         },
         {
             "path": "pages/index/userInfoPage/managerTree/managerTree",
             "style": {
-                "navigationBarTitleText": "树洞管理"
+                "navigationBarTitleText": "我的树洞"
             }
         },
         {
@@ -135,7 +135,7 @@
         {
             "path": "pages/index/letter/writerLetter/friendInfo/friendInfo",
             "style": {
-                "navigationBarTitleText": "树洞信息"
+                "navigationBarTitleText": "好友信息"
             }
         },
         {
@@ -165,7 +165,7 @@
     },
     "tabBar": {
         "borderStyle": "black",
-        "backgroundColor": "#333",
+        "backgroundColor": "white",
         "color": "#8F8F94",
         "selectedColor": "#41B883",
         "list": [

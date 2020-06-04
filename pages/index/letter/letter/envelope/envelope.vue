@@ -35,7 +35,7 @@
 		height: 2.5rem;
 		width: 2.5rem;
 		border-radius: 50%;
-		background-color: rgb(203,176,68);
+		background-color: #ffc300;
 		overflow: hidden;
 		
 		image {

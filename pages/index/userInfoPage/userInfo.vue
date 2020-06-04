@@ -194,7 +194,6 @@
         },
 
         onShow() {
-            console.log(userInfo.Info)
             this.initData()
         },
 

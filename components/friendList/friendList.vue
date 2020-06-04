@@ -1,16 +1,19 @@
 <style scoped lang="scss">
 	.friend-container {
+		min-height: 100%;
+		overflow: scroll;
 		width: 100%;
 	}
 	
 	.pingyin-container {
 		height: 1rem;
-		background-color: #efe2e2;
+		background-color: #ededed;
 		line-height: 1rem;
 		font-size: 0.9rem;
 	}
 	
 	.friend-list-container {
+		pointer-events: auto;
 		padding: 0.5rem 0 0.5rem 0;
 		height: 2.5rem;
 	}
@@ -46,7 +49,7 @@
 		display: flex;
 		align-items: center;
 		height: 50%;
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 	}
 	
 	.head-icon {

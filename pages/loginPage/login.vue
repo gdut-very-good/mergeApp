@@ -132,6 +132,7 @@
     import {loginModules} from "@/utils/apiManager/loginApi";
     import {userInfo} from '@/utils/userInfo/user'
     import {errorCode} from "../../utils/errorCode/errorCode";
+    import {Authorization} from "../../utils/apiManager/request";
     export default {
         name: 'login',
         data() {
@@ -156,7 +157,26 @@
                 return 'background-color: black;opacity: 0.2;'
             }
         },
+        created() {
+            this.detected()
+        },
         methods: {
+            //检测请求头auth自动登录
+            detected() {
+                uni.getStorage({
+                    key: 'Authorization',
+                    success: function (res) {
+                        console.log('请求头部已经存在')
+                        uni.reLaunch({
+                            url: '/pages/index/letter/writerLetter/writerLetter',
+                        })
+                    },
+                    fail() {
+                        console.log('请求头部已经不存在')
+                    }
+                });
+            },
+
             toIndex(options) {
                 if (options === 'log') {
                     let data = {
@@ -180,7 +200,9 @@
                     })
                 } else {
                     if (this.sign.confirm !== this.sign.password) {
-                        alert('两次密码输入不一致');
+                        uni.showToast({
+                            title: '两次密码输入不一致'
+                        })
                         return
                     }
                     const data = {

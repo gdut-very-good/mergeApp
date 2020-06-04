@@ -89,7 +89,7 @@
                     },
                     {
                         name: '距离:',
-                        content: '2000km'
+                        content: ''
                     },
                 ],
                 userId: ''
@@ -118,7 +118,7 @@
                 this.info[0].content = res.nickname
                 this.info[1].content = res.signature
                 this.info[2].content = res.city
-                this.info[3].content = res.nickname
+                this.info[3].content = res.distance > 1000 ? Math.floor(res.distance / 1000) + '公里' : res.distance + '米'
                 this.imageUrl = 'http://island.hellochaos.cn/uploads/' + res.photo
             },
 

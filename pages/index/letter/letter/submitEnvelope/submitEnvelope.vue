@@ -97,7 +97,6 @@
         },
 
         mounted() {
-            console.log('重新请求邮票')
             this.getContactList()
             this.initData()
         },

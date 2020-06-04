@@ -65,7 +65,7 @@
 
 <style scoped lang="less">
     .writeLetter-container {
-       height: 100%;
+       height: 100vh;
     }
 
     .bottom-con {
@@ -83,7 +83,7 @@
         font-size: 2rem;
         text-align: center;
         line-height: 2.2rem;
-        background-color: rgb(203, 176, 68);
+        background-color: #ffc300;
         border-radius: 50%;
         position: absolute;
         bottom: 2.75rem;

@@ -24,10 +24,11 @@
         position: absolute;
         white-space: nowrap;
         height: 100%;
+        width: 100%;
         transition: all .35s ease-in-out;
         text-align: center;
 
-        .letter-card {
+        .letter-card{
             border-radius: 6px;
             position: relative;
             display: inline-block;
@@ -36,10 +37,14 @@
             background-color: white;
             box-shadow: 10px 10px 5px #888888;
             margin: 20% 15% auto 15%;
-            background-image: url("../../../../../static/maobi.png");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 40%;
+
+            .letter-bg {
+                left: 0;
+                top: 0;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+            }
 
             .stamp-con {
                 display: block;
@@ -48,14 +53,25 @@
                 margin-left: 1rem;
             }
 
+            .content {
+                position: absolute;
+                width: 90%;
+                left: 5%;
+                margin: auto;
+                white-space: normal;
+                margin-top: 1rem;
+                color: white;
+                text-align: left;
+            }
+
             .title {
                 position: absolute;
                 bottom: 0;
-                height: 2rem;
+                height: 4rem;
                 width: 100%;
                 text-align: center;
                 font-size: 0.8rem;
-                color: #7fa3e4;
+                color: black;
             }
 
             .send-time {
@@ -66,21 +82,32 @@
                 position: absolute;
                 height: 1.3rem;
                 padding: 0 1rem 0 1rem;
-                background-color: #7fa3e4;
+                background-color: #ffc300;
                 color: white;
                 right: 0.5rem;
                 top: 0.5rem;
                 font-size: 0.5rem;
+                border-radius: 3px;
             }
         }
     }
 
-    .check-friend-info {
-        top: 0;
+
+    .index-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
-        background-color: #2C405A;
+        bottom: 5%;
+        left: 0;
         height: 2rem;
-        width: 2rem;
+        width: 100%;
+        .index-point {
+            height: 0.8rem;
+            width: 0.8rem;
+            border-radius: 50%;
+            margin:0 0.3rem 0 0.3rem;
+        }
     }
 
     .submit-btn {
@@ -127,16 +154,25 @@
             >
                 <view
                         class="letter-card"
-                        v-for="item in letterList"
+                        v-for="(item, index) in letterList"
                         style="padding-top: 0.5rem;position: relative"
                         @touchstart.stop="touchStart"
                         @touchend.stop="touchEnd"
                         @click="readLetter(item.letter.letterId)"
                 >
+                    <image :src="'../../../../../static/letter_'+(index % 6)+'.jpg'" class="letter-bg"></image>
                     <image :src="item.stampId.url" class="stamp-con"></image>
-                    <view class="title">{{item.letter.header}}</view>
+                    <view class="title"><span style="font-size: 0.8rem">寄信人:</span><span style="color: #174b6b;font-size: 1rem">{{item.letter.header}}</span></view>
+                    <view class="content">
+                        <text>
+                            {{content(item.letter.content)}}
+                        </text>
+                    </view>
                     <view class="send-time">{{item.nickname}}</view>
                 </view>
+            </view>
+            <view class="index-btn">
+                <view class="index-point" :style="index==number?'background-color: #3d49ca;':'background: rgba(0,0,0,0.5);'" v-for="(item, number) in letterList"></view>
             </view>
         </view>
     </view>
@@ -160,29 +196,27 @@
                 endX: '',
                 element: '',
                 index: 0,
-                leftValue: 0
+                leftValue: 0,
             }
         },
 
+        computed: {
+
+        },
+
         onLoad(options) {
+            console.log('重新请求数据')
             uni.setNavigationBarTitle({
                 title: options.nickname
             });
             this.name = options.nickname
             this.userId = options.userId
             this.getLetterInfo(options)
-            this.initWidth()
-            this.element = document.getElementsByClassName('active')[0]
         },
 
         methods: {
-            initWidth() {
-                let bg = document.getElementsByClassName('bottom-con')[0]
-                console.log(bg.style.width)
-            },
             getLetterInfo(info) {
                 letter.getFriendLetter(info.userId).then(res => {
-                    console.log(res)
                     if (res.code == 1) {
                         if (res.data.records.length !== 0) {
                             this.letterList = res.data.records
@@ -220,14 +254,19 @@
 
             touchEnd(e) {
                 const {windowWidth} = uni.getSystemInfoSync();
-                const _this = this
                 e.preventDefault() // 阻止默认事件，滚动等
                 this.endX = e.changedTouches[0].clientX
                 //大于0说明向左滑动，小于0说明向右滑动
                 if (this.startX - this.endX > 40) {
+                    if (this.index === this.letterList.length - 1) {
+                        return;
+                    }
                     this.index++
                     this.leftValue = -this.index * windowWidth + 'px'
-                } else if (this.startX - this.endX < -40){
+                } else if (this.startX - this.endX < -40) {
+                    if (this.index === 0) {
+                        return
+                    }
                     this.index--
                     this.leftValue = -this.index * windowWidth + 'px'
                 }
@@ -236,7 +275,6 @@
             },
 
             doNothing() {
-                console.log('nihao')
             },
 
             readLetter(letterId) {
@@ -244,6 +282,14 @@
                     url: '/pages/index/letter/writerLetter/letterMessage/readLetter/readLetter?id=' + letterId,
                 })
             },
+
+            content(value) {
+                if (value.length < 0) {
+                    return value
+                } else {
+                    return value.substring(0, 30) + '...'
+                }
+            }
 
 
         }
