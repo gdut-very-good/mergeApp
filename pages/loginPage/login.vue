@@ -190,7 +190,7 @@
                                 title: '登录成功'
                             });
                             setTimeout(() => {
-                                uni.reLaunch({
+                                uni.reLaunch ({
                                     url: '/pages/index/letter/writerLetter/writerLetter',
                                 })
                             }, 500)

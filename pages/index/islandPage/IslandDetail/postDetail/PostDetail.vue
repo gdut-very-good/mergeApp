@@ -106,21 +106,21 @@
                 });
             }
         },
-        mounted() {
-    		let posterId = this.$route.query.postId;
-    		this.postId = posterId;
-    		Api.get(`/post/${posterId}`).then(({data}) => {
-    			this.postDetail = data;
-    			console.log(data);
-    			Api.get(`/user/${data.userId}`).then(({data}) => {
-                    this.userInfo = data;
-                    console.log(this.userInfo)
-                });
-            });
-    		Api.get(`/reply/post/${posterId}`).then(({data}) => {
-    			this.commentData = data || [];
-            })
-		}
+		onLoad(options) {
+			let posterId = options.postId;
+			this.postId = posterId;
+			Api.get(`/post/${posterId}`).then(({data}) => {
+				this.postDetail = data;
+				console.log(data);
+				Api.get(`/user/${data.userId}`).then(({data}) => {
+					this.userInfo = data;
+					console.log(this.userInfo)
+				});
+			});
+			Api.get(`/reply/post/${posterId}`).then(({data}) => {
+				this.commentData = data || [];
+			})
+		},
 	}
 </script>
 
