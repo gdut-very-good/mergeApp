@@ -86,7 +86,8 @@
         methods : {
     		reply(comment) {
     			console.log(comment);
-				this.beReplyId = comment.reply.replyId;
+    			// 后台说beReplyId传writerId
+				this.beReplyId = comment.reply.writerId;
                 this.inputVisibility = false;
             },
 			onInputFocus() {
