@@ -1,7 +1,7 @@
 <template>
     <view class="wrapper IslandPageView">
         <view class="header-box">
-            <input type="text" v-model="inputVal" placeholder="搜索海岛" @focus="inputFocus" @blur="inputBlur" class="input">
+            <input type="text" v-model="inputVal" placeholder="搜索海岛" class="input" @keyup.enter="handleClick">
             <button class="button" @click="handleClick">{{buttonMsg}}</button>
         </view>
         <view class="container-box" style="">

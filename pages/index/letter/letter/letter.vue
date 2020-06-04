@@ -17,20 +17,27 @@
 	.envelope-image {
 		display: flex;
 		align-items: center;
+        flex-direction: column;
 		justify-content: center;
 		position: fixed;
 		right: 1.5rem;
 		bottom: 6rem;
-		height: 2.5rem;
+		height: 5rem;
 		width: 2.5rem;
 		border-radius: 50%;
-		background-color: #ffc300;
 		overflow: hidden;
 
 		image {
 			height: 2rem;
 			width: 2rem;
 		}
+
+        .img1 {
+            background-color: #ffc300;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+        }
+
 
 	}
 
@@ -55,12 +62,13 @@
 
 <template>
     <div class="letter-container">
-		<view class="envelope-image"  @click="jump('envelope')">
-			<image src="http://printer.noerror.xyz/appImage/envelope1.png"></image>
+		<view class="envelope-image">
+			<image class="img1" @click="jump('envelope')" src="http://printer.noerror.xyz/appImage/envelope1.png"></image>
+            <image class="img2" v-show="draftId" @click="deleteDraft" src="https://s1.ax1x.com/2020/06/04/t0jWPH.png"></image>
 		</view>
         <div class="bottom-con">
             <input class="letter-title" placeholder="信件标题" style="outline: none" v-model="title">
-            <textarea name="" id="" cols="30" rows="10" class="letter-content" placeholder="写点东西" v-model="content"></textarea>
+            <textarea name="" id="" cols="30" rows="10" maxlength="60000" class="letter-content" placeholder="写点东西" v-model="content"></textarea>
         </div>
     </div>
 </template>
@@ -163,7 +171,22 @@
 					url: `./submitEnvelope/submitEnvelope?letterId=${this.draftId}`
 				})
             },
-
+			deleteDraft() {
+				let vm = this;
+				uni.showModal({
+					title: '提示',
+					content: '确认要删除吗',
+					success: function (res) {
+						if (res.confirm) {
+							Api.delete(`/letter/${vm.draftId}`).then(async (res) => {
+								uni.switchTab ({
+									url : '/pages/index/draft/draft',
+								})
+							});
+						}
+					}
+				});
+            },
             getDraftContent() {
                 letter.getSingleLetter(this.draftId).then(res => {
                     console.log(res);

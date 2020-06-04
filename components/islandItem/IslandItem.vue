@@ -10,7 +10,7 @@
             	'background-size' : 'cover'
             }">
             <view class="content">
-                {{introduce}}
+                {{signature}}
             </view>
         </view>
         <view class="name">
@@ -39,7 +39,7 @@
             username : {
                 default : "Tom"
             },
-            introduce : {
+            signature : {
                 default: "海岛描述就是这个样子啦海岛描述就是这个样子啦"
             },
             background : {
