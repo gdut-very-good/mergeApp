@@ -103,6 +103,10 @@
 					Api.get(`/reply/post/${this.postId}`).then(({data}) => {
 						this.commentData = data;
 					});
+					this.inputVal = "";
+					uni.showToast({
+                        title : '回复成功'
+                    })
                 });
             }
         },
