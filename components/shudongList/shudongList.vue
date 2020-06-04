@@ -40,10 +40,10 @@
     <view>
         <view class="bottom-con">
             <view class="card-item" v-for="item in list">
-                <view class="shudong-title">{{item.title}}</view>
-                <view class="shudong-content">{{item.content}}</view>
-                <view class="creator">荒于其</view>
-                <view class="time">2020:222</view>
+                <view class="shudong-title">{{item.hole.title}}</view>
+                <view class="shudong-content">{{item.hole.content}}</view>
+                <view class="creator">{{item.nickname}}</view>
+                <view class="time">{{item.hole.createTime}}</view>
             </view>
         </view>
     </view>
@@ -60,13 +60,11 @@
             }
         },
         mounted() {
-            console.log('重新请求数据')
             this.getList()
         },
         methods: {
             getList() {
                 letter.getHoleList().then(res => {
-                    console.log(res)
                     this.list = res.data.records
                 })
             }

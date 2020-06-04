@@ -22,7 +22,6 @@
 
 <script>
     import friendList from '../../../../components/friendList/friendList'
-    import {loginModules} from '@/utils/apiManager/loginApi.js'
 	import {getStaticDraftInfo} from "../../../../utils/draftInfo/info";
 
     export default {

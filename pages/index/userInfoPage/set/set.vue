@@ -77,6 +77,14 @@
         }
     }
 
+    .other-item {
+        width: 90%;
+        margin: auto;
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 0.8rem;
+    }
+
     .head {
         margin-bottom: 1rem;
     }
@@ -124,6 +132,9 @@
                     <image src="http://printer.noerror.xyz/appImage/right_arrow.png" class="right-arrow"></image>
                 </view>
             </view>
+            <view class="other-item">接受信件数量:  {{receiveNumber}}</view>
+            <view class="other-item">发送信件信件数量:  {{writeNumber}}</view>
+            <view class="other-item">胶囊数量:  {{jiaonangNum}}</view>
         </view>
     </view>
 </template>
@@ -139,8 +150,19 @@
 
         watch: {
             'headImage': function (value) {
-                console.log('wo变化了')
                 this.headImage = value
+            }
+        },
+
+        computed: {
+            jiaonangNum() {
+                return userInfo.Info.capsule + '个'
+            },
+            receiveNumber() {
+                return userInfo.Info.receiveLetter + '封'
+            },
+            writeNumber() {
+                return userInfo.Info.sendLetter + '封'
             }
         },
 

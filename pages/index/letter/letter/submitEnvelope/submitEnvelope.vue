@@ -125,6 +125,10 @@
             getContactList() {
                 letter.getBoomFriend().then(res => {
                     this.contactList = res.data.records
+                    this.contactList.push({
+                        nickname: '陌生人',
+                        userId: null,
+                    })
                     this.friendName = res.data.records[0].nickname
 					letterInformation.info.receiverId = res.data.records[0].userId
 					letterInformation.info.stampId = res.data.records[0].stampId
@@ -158,6 +162,7 @@
 				letterInformation.info.sendTime = formatDate();
 				letterInformation.info.stampId = this.stampId;
                 const reqData = letterInformation.info;
+                console.log(reqData)
                 letter.submitLetter(reqData).then(res => {
 					if (res.code == 1) {
 						uni.showToast({

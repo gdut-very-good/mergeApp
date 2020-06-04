@@ -75,7 +75,7 @@
             <view class="leaving-message">
                 <view class="leaving-title">评论:</view>
                 <view class="message-content" v-for="remarkItem in remark">
-                    <view class="remark-person-name">黄钰琪:</view>
+                    <view class="remark-person-name">{{remarkItem.nickname}}:</view>
                     <view class="person-content">{{remarkItem.content}}</view>
                     <view class="time">{{remarkItem.time}}</view>
                 </view>

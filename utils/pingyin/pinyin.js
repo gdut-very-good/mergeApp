@@ -11,6 +11,9 @@ let getPy = (function() {
         if (typeof (str) != "string") {
             throw new Error(-1, "函数getPy需要字符串类型参数!");
         }
+        if(str === '陶') {
+            return ['T']
+        }
         var arrResult = new Array(); //保存中间结果的数组
         for (var i = 0, len = str.length; i < len; i++) {
             //获得unicode码
