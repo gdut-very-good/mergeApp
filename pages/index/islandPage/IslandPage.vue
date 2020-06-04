@@ -10,7 +10,7 @@
             </view>
             <view class="rua-box" @click="toIsland(myInfo.userId)">
                 <text class="first">我的海岛</text>
-                <text class="second">{{myInfo.signature || 'rua'}}</text>
+                <text class="second">{{myInfo.signature || ''}}</text>
             </view>
         </view>
         <view class="container">
