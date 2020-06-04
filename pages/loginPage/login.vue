@@ -53,7 +53,7 @@
             border-radius: 50%;
             background-color: #097cf3;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
         .swtich {
             width: calc(100% - 2rem);

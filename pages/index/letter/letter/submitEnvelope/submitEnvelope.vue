@@ -49,6 +49,16 @@
         }
     }
 
+    .send-consume-time {
+        min-height: 2rem;
+        white-space: normal;
+        width: 90%;
+        line-height: 2rem;
+        padding: 0.5rem 0 0.5rem 0;
+        margin: auto;
+        font-size: 0.8rem;
+    }
+
 </style>
 
 <template>
@@ -62,6 +72,7 @@
                     <text class="wenzi" @click="showList">{{friendName}}</text>
                 </view>
             </view>
+            <view class="send-consume-time">{{consume}}</view>
             <view class="submit-btn" @click="submit">投递</view>
             <view class="submit-btn" @click="saveDraft">存草稿</view>
         </view>
@@ -95,7 +106,8 @@
                 stampUrl: '',
 				stampId: '',
                 friendName: null,
-                letterId : null
+                letterId : null,
+                consume: ''
             }
         },
 
@@ -130,6 +142,7 @@
                         userId: null,
                     })
                     this.friendName = res.data.records[0].nickname
+                    this.consume = res.data.records[0].sendInfo
 					letterInformation.info.receiverId = res.data.records[0].userId
 					letterInformation.info.stampId = res.data.records[0].stampId
                 })
@@ -140,9 +153,11 @@
             },
 
             close(data) {
+                console.log(data)
                 this.isShow = false;
                 if (data.name) {
                     this.friendName = data.name
+                    this.consume = data.consume
                 }
             },
 

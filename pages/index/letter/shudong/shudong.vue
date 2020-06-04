@@ -42,28 +42,26 @@
 </style>
 
 <template>
-    <div>
+    <view>
 		<view class="submit-btn">
 			<image class="save-image" src="http://printer.noerror.xyz/appImage/gou.png" @click="submit"></image>
 		</view>
-        <div class="bottom-con">
+        <view class="bottom-con">
             <input class="shudong-second-title"
                    type="text"
                    placeholder="树洞标题"
                    v-model="title"
             >
-            <div class="text-area">
+            <view class="text-area">
                 <textarea
                         placeholder="写下你想对树洞大人说的吧..."
-                        id=""
-                        cols="30"
-                        rows="10"
+                        maxlength="60000"
                         v-model="content"
                 >
                 </textarea>
-            </div>
-        </div>
-    </div>
+            </view>
+        </view>
+    </view>
 </template>
 
 <script>

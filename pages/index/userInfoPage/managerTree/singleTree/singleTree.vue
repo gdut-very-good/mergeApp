@@ -18,6 +18,7 @@
         width: 95%;
         margin: 0.3rem auto auto;
         font-size: 1rem;
+        overflow: scroll;
     }
 
     .delete-btn {

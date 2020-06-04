@@ -99,7 +99,8 @@
             cancel(option) {
                 if (option === 'sure') {
                     this.$emit('close', {
-                        name: this.chooseWhich.nickname
+                        name: this.chooseWhich.nickname,
+                        consume: this.chooseWhich.sendInfo
                     })
                 } else {
                     this.$emit('close', {

@@ -5,20 +5,21 @@
 
     .bottom-con {
         height: 100%;
-        background-color: rgb(242,242,242);
+        background-color: rgb(242, 242, 242);
 
         .head-con {
             display: flex;
             @height: 4rem;
-            height:  @height;
+            height: @height;
             background-color: white;
-            flex-direction:row;
+            flex-direction: row;
 
             .left-bar {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 width: 4rem;
+
                 .head-image {
                     border-radius: 50%;
                     overflow: hidden;
@@ -29,7 +30,7 @@
 
             .middle-bar {
                 @margin: 0.2rem;
-                line-height:  @height;
+                line-height: @height;
                 width: 70%;
 
                 .user-name {
@@ -50,7 +51,7 @@
             }
 
             .right-bar {
-                line-height:  @height;
+                line-height: @height;
                 width: 20%;
 
                 .right-arrow {
@@ -63,10 +64,10 @@
 
         .list-item-info {
             @height: 2.5rem;
-            height:  @height;
+            height: @height;
             display: flex;
             background-color: white;
-            flex-direction:row;
+            flex-direction: row;
             margin-top: 0.5rem;
 
             .left-bar {
@@ -76,14 +77,16 @@
                 @leftBarHeight: 2.5rem;
                 height: @leftBarHeight;
                 width: 4rem;
+
                 .head-image {
                     height: 2rem;
-                    width:  2rem;
+                    width: 2rem;
                 }
             }
 
             .middle-bar {
-                line-height:  @height;
+                position: relative;
+                line-height: @height;
                 width: 70%;
 
                 .content {
@@ -92,15 +95,30 @@
                     line-height: @height;
                     font-size: 0.8rem;
                 }
+
+                .unRead {
+                    position: absolute;
+                    right: 0;
+                    top: 0.6rem;
+                    @radius: 1.3rem;
+                    height: @radius;
+                    width: @radius;
+                    border-radius: 50%;
+                    background-color: red;
+                    color: white;
+                    text-align: center;
+                    line-height: @radius;
+                    font-size: 0.6rem;
+                }
             }
 
             .right-bar {
-                line-height:  @height;
+                line-height: @height;
                 width: 10%;
 
                 .right-arrow {
-                    height: 0.6rem;
-                    width: 0.6rem;
+                    height: 0.8rem;
+                    width: 0.8rem;
                     margin-top: 0.45rem;
                 }
             }
@@ -127,15 +145,16 @@
             </view>
 
             <view class="list-item-info"
-                 v-for="item in listItem"
-                 :key="item.name"
-                 @click="jump(item.module)"
+                  v-for="item in listItem"
+                  :key="item.name"
+                  @click="jump(item.module)"
             >
                 <view class="left-bar">
                     <image :src="item.imageUrl" class="head-image"></image>
                 </view>
                 <view class="middle-bar">
                     <view class="content">{{item.name}}</view>
+                    <view class="unRead" v-if="item.module==='message'">{{unReadNum}}</view>
                 </view>
                 <view class="right-bar">
                     <image src="http://printer.noerror.xyz/appImage/right_arrow.png" class="right-arrow"></image>
@@ -149,6 +168,7 @@
 <script>
     import {userInfo} from "../../../utils/userInfo/user";
     import {Authorization} from "../../../utils/apiManager/request";
+    import {myApi} from "../../../utils/apiManager/myApi";
 
     export default {
         name: 'userInfo',
@@ -185,28 +205,38 @@
                         imageUrl: 'http://printer.noerror.xyz/appImage/tree.png'
                     },
                     {
-                        name: '注销',
-                        module: 'zhuxiao',
-                        imageUrl: 'http://printer.noerror.xyz/appImage/zhuxiao.png'
+                        name: '设置',
+                        module: 'logout',
+                        imageUrl: 'http://printer.noerror.xyz/appImage/set.png'
                     },
-                ]
+                ],
+                unReadNum: 0,
+                timeout: null
             }
+        },
+
+        onHide () {
+            console.log('清楚')
+            clearInterval(this.timeout)
+            this.timeout = null
         },
 
         onShow() {
             this.initData()
+            this.interVal()
         },
 
         methods: {
             initData() {
                 this.headUrl = userInfo.Info.photo
             },
+
             jump(moduleName) {
                 if (moduleName === 'zhuxiao') {
                     uni.showModal({
                         title: '提示',
                         content: '你确定要退出登录吗',
-                        success (res) {
+                        success(res) {
                             if (res.cancel) {
                                 //点击取消,默认隐藏弹框
                             } else {
@@ -225,7 +255,30 @@
                         url: '/pages/index/userInfoPage/' + moduleName + '/' + moduleName
                     })
                 }
+            },
+
+            getNotice() {
+                myApi.getNotice().then(res => {
+                    let temp = 0
+                    if (res.code == 1) {
+                        for (let i = 0; i < res.data.length; i++) {
+                            if (!res.data[i].isRead) {
+                                temp++
+                            }
+                        }
+                        this.unReadNum = temp
+                    }
+                })
+            },
+
+            interVal() {
+                this.getNotice()
+                this.timeout = setInterval(() => {
+                    console.log('执行轮训')
+                    this.getNotice()
+                }, 15000)
             }
+
         }
 
 

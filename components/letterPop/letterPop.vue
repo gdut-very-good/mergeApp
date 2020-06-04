@@ -20,16 +20,16 @@
             overflow: scroll;
 
             .list-item {
-                height: 1rem;
-                line-height: 1rem;
+                height: 1.8rem;
+                line-height: 1.8rem;
                 text-align: center;
-				font-size: 0.8rem;
+				font-size: 1rem;
             }
         }
     }
 
     .btn-con {
-        height: 1rem;
+        height: 2rem;
         flex-direction: row;
         display: flex;
         justify-content: center;
@@ -37,7 +37,7 @@
 
         .confirm-btn {
             height: 100%;
-            line-height: 1rem;
+            line-height: 2rem;
             width: 30%;
             text-align: center;
             border: 1px solid black;

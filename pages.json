@@ -155,6 +155,16 @@
             "style": {
                 "navigationBarTitleText": "搜索"
             }
+        },{
+            "path" : "pages/index/userInfoPage/logout/logout",
+            "style": {
+                "navigationBarTitleText": "注销"
+            }
+        },{
+            "path" : "pages/index/letter/leaving/leaving",
+            "style": {
+                "navigationBarTitleText": "留言"
+            }
         }
     ],
     "globalStyle": {
