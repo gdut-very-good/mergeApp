@@ -50,6 +50,12 @@ function ResponseInterceptor(request, key, config) {
 const Api = new _Api();
 
 
+// document.oncopy = null;
+// document.onselectstart = null;
+// document.oncontextmenu = null;
+// document.oncut = null;
+// document.
+
 
 
 export default Api;

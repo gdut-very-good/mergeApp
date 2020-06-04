@@ -85,7 +85,7 @@
         },
         methods : {
     		reply(comment) {
-    			console.log(comment)
+    			console.log(comment);
 				this.beReplyId = comment.reply.replyId;
                 this.inputVisibility = false;
             },
