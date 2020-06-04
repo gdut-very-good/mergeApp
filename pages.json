@@ -18,7 +18,7 @@
         {
             "path": "pages/index/letter/writerLetter/letterMessage/letterMessage",
             "style": {
-                "navigationBarTitleText": "来往信息"
+                "navigationBarTitleText": "来往信件"
             }
         },
         {

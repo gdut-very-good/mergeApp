@@ -1,9 +1,9 @@
 <style scoped lang="less">
     .card-item {
-        height: 10rem;
         width: 80%;
         border: 1px solid black;
         margin: 0.5rem auto auto;
+        padding-bottom: 1rem;
 
         .shudong-title {
             @titleHeight: 2rem;
@@ -14,24 +14,39 @@
         }
 
         .shudong-content {
-            max-height: 3.5rem;
+            min-height: 6.5rem;
             overflow: scroll;
             width: 90%;
             margin: 0 auto;
             font-size: 0.8rem;
         }
+
+        .creator {
+            width: 90%;
+            margin: auto;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: right;
+            font-size: 0.8rem;
+        }
+
+        .time {
+            .creator;
+        }
     }
 </style>
 
 <template>
-    <div>
-        <div class="bottom-con">
-            <div class="card-item" v-for="item in list">
-                <div class="shudong-title">{{item.title}}</div>
-                <div class="shudong-content">{{item.content}}</div>
-            </div>
-        </div>
-    </div>
+    <view>
+        <view class="bottom-con">
+            <view class="card-item" v-for="item in list">
+                <view class="shudong-title">{{item.title}}</view>
+                <view class="shudong-content">{{item.content}}</view>
+                <view class="creator">荒于其</view>
+                <view class="time">2020:222</view>
+            </view>
+        </view>
+    </view>
 </template>
 
 <script>
@@ -45,6 +60,7 @@
             }
         },
         mounted() {
+            console.log('重新请求数据')
             this.getList()
         },
         methods: {

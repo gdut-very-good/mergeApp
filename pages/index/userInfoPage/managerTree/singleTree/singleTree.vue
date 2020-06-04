@@ -33,12 +33,34 @@
     }
 
     .leaving-message {
-        .message-content {
+        min-height: 5rem;
+        width: 90%;
+        margin: auto;
+        margin-bottom: 1rem;
+        border: 1px solid black;
+        .leaving-title {
             height: 1rem;
-            text-align: center;
-            font-size: 1rem;
+            font-size: 0.8rem;
+        }
+        .message-content {
+            width: 90%;
+            margin: auto;
+            font-size: 0.8rem;
+            .remark-person-name {
+                font-size: 0.8rem;
+            }
+            .person-content {
+                font-size: 0.8rem;
+                width: 90%;
+                margin: auto;
+            }
+            .time {
+                font-size: 0.8rem;
+                text-align: right;
+            }
         }
     }
+
 
 
 </style>
@@ -51,7 +73,12 @@
                 <view>{{treeHole.content}}</view>
             </view>
             <view class="leaving-message">
-                <view class="message-content"></view>
+                <view class="leaving-title">评论:</view>
+                <view class="message-content" v-for="remarkItem in remark">
+                    <view class="remark-person-name">黄钰琪:</view>
+                    <view class="person-content">{{remarkItem.content}}</view>
+                    <view class="time">{{remarkItem.time}}</view>
+                </view>
             </view>
             <view class="delete-btn" @click="deleteTree">删除</view>
         </view>
@@ -70,7 +97,8 @@
         data() {
             return {
                 treeHole: {},
-                id: ''
+                id: '',
+                remark: []
             }
         },
 
@@ -85,6 +113,8 @@
                 myApi.getSingleTreeHole(this.id).then(res => {
                     console.log(res.data)
                     this.treeHole = res.data.hole
+                    this.remark = res.data.messages
+                    console.log(this.remark)
                     if (!res.code) {
                         errorCode()
                     }
