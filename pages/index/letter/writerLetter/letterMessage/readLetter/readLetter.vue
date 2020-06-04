@@ -54,7 +54,7 @@
 
 <template>
     <view class="letter-message">
-        <image src="../../../../../../static/letter/letter_bg2.jpg"></image>
+        <image src="../../../../../../static/letter/letterpaper.png"></image>
         <view class="line">亲爱的: {{receiverName}}</view>
         <view ref="desc" class="content-container">
             <view class="content">{{content}}</view>

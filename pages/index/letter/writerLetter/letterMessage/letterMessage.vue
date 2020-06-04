@@ -62,6 +62,7 @@
                 margin-top: 1rem;
                 color: #9a6060;
                 text-align: left;
+                font-size: 0.9rem;
             }
 
             .title {
@@ -162,7 +163,7 @@
                 >
                     <image :src="'../../../../../static/letter_'+(index % 6)+'.jpg'" class="letter-bg"></image>
                     <image :src="item.stampId.url" class="stamp-con"></image>
-                    <view class="title"><span style="font-size: 0.8rem">寄信人:</span><span style="color: #174b6b;font-size: 1rem">{{item.letter.header}}</span></view>
+                    <view class="title"><span style="font-size: 0.8rem">寄信人:</span><span style="color: #174b6b;font-size: 1rem">{{item.nickname}}</span></view>
                     <view class="content">
                         <text>
                             {{content(item.letter.content)}}

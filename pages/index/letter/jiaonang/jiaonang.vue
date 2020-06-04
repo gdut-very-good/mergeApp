@@ -36,27 +36,6 @@
         }
     }
 
-    .mpvue-picker-view {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 10rem;
-        background-color: white-space;
-        color: black;
-        border-top: 1px solid black;
-
-        .item {
-            text-align: center;
-            width: 100%;
-            height: 88 upx;
-            line-height: 88 upx;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            font-size: 40 upx;
-        }
-    }
-
-
 </style>
 
 <template>
@@ -67,7 +46,7 @@
         <view class="bottom-con">
             <input class="shudong-second-title" v-model="header" placeholder="标题"></view>
         <view class="text-area">
-            <textarea placeholder="写下你想对明天的你说的话吧..." id="" cols="30" rows="10" v-model="content"></textarea>
+            <textarea placeholder="写下你想对明天的你说的话吧..." maxlength="60000" v-model="content"></textarea>
         </view>
     </view>
 </template>

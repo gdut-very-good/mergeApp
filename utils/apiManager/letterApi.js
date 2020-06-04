@@ -46,6 +46,10 @@ class LetterApi extends Request{
     async getSingleLetter(data) {
         return getResult(await this.get('/letter/' + data))
     }
+    //提交留言
+    async submitLeaving(data) {
+        return getResult(await this.post('/message/', data))
+    }
 }
 
 export const letter = new LetterApi()

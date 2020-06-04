@@ -39,7 +39,7 @@
 <template>
     <view>
         <view class="bottom-con">
-            <view class="card-item" v-for="item in list">
+            <view class="card-item" v-for="item in list" @click="jump(item.hole.treeHoleId)">
                 <view class="shudong-title">{{item.hole.title}}</view>
                 <view class="shudong-content">{{item.hole.content}}</view>
                 <view class="creator">{{item.nickname}}</view>
@@ -66,6 +66,12 @@
             getList() {
                 letter.getHoleList().then(res => {
                     this.list = res.data.records
+                })
+            },
+
+            jump(id) {
+                uni.navigateTo({
+                    url: '/pages/index/letter/leaving/leaving?id=' + id
                 })
             }
         }

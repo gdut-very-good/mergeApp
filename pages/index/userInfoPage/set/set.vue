@@ -132,9 +132,18 @@
                     <image src="http://printer.noerror.xyz/appImage/right_arrow.png" class="right-arrow"></image>
                 </view>
             </view>
-            <view class="other-item">接受信件数量:  {{receiveNumber}}</view>
-            <view class="other-item">发送信件信件数量:  {{writeNumber}}</view>
-            <view class="other-item">胶囊数量:  {{jiaonangNum}}</view>
+            <view
+                    class="list-item"
+                    v-for="item in otherItem"
+                    :key="item.name"
+            >
+                <view class="left-bar">
+                    <view class="left-bar-content" style="left: 0.4rem">{{item.name}}</view>
+                </view>
+                <view class="right-bar">
+                    <view class="right-bar-content">{{item.content}}</view>
+                </view>
+            </view>
         </view>
     </view>
 </template>
@@ -154,18 +163,6 @@
             }
         },
 
-        computed: {
-            jiaonangNum() {
-                return userInfo.Info.capsule + '个'
-            },
-            receiveNumber() {
-                return userInfo.Info.receiveLetter + '封'
-            },
-            writeNumber() {
-                return userInfo.Info.sendLetter + '封'
-            }
-        },
-
         data() {
             return {
                 headImage: '',
@@ -180,11 +177,6 @@
                         module: 'signature',
                         content: '',
                     },
-                    // {
-                    //     name: 'ID',
-                    //     module: 'userId',
-                    //     content: '',
-                    // },
                     {
                         name: '地区',
                         module: 'city',
@@ -195,6 +187,23 @@
                         module: 'mail',
                         content: '',
                     },
+                ],
+                otherItem: [
+                    {
+                        name: '接受信件数量',
+                        module: 'other',
+                        content: '',
+                    },
+                    {
+                        name: '发送信件信件数量',
+                        module: 'other',
+                        content: '',
+                    },
+                    {
+                        name: '胶囊数量',
+                        module: 'other',
+                        content: '',
+                    }
                 ]
             }
         },
@@ -205,12 +214,14 @@
 
         methods: {
             jump(module, value) {
-                uni.navigateTo({
-                    url: './changeInfo/changeInfo?module=' + module + '&value=' + value,
-                    fail(res) {
-                        console.log(res)
-                    }
-                })
+                if (module !== 'other') {
+                    uni.navigateTo({
+                        url: './changeInfo/changeInfo?module=' + module + '&value=' + value,
+                        fail(res) {
+                            console.log(res)
+                        }
+                    })
+                }
             },
 
             fileUpload() {
@@ -241,6 +252,9 @@
                     this.$data.listItem[i]['content'] = userInfo.Info[this.$data.listItem[i]['module']]
                 }
                 this.headImage = userInfo.Info.photo
+                this.otherItem[0]['content'] = userInfo.Info.capsule + '个'
+                this.otherItem[1]['content'] = userInfo.Info.receiveLetter + '封'
+                this.otherItem[2]['content'] = userInfo.Info.sendLetter + '封'
             }
         }
     }

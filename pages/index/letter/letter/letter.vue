@@ -44,7 +44,8 @@
 
     .letter-content {
 		padding-top: 1rem;
-        height: 10rem;
+        height: 15rem;
+        overflow: scroll;
     }
 
     .choose-envelope-con {
@@ -60,7 +61,7 @@
 		</view>
         <div class="bottom-con">
             <input class="letter-title" placeholder="信件标题" style="outline: none" v-model="title">
-            <textarea name="" id="" cols="30" rows="10" class="letter-content" placeholder="写点东西" v-model="content"></textarea>
+            <textarea maxlength="60000" class="letter-content" placeholder="写点东西" v-model="content"></textarea>
         </div>
     </div>
 </template>
