@@ -133,7 +133,10 @@
         <view class="bottom-con">
             <view class="head-con" @click="jump('set')">
                 <view class="left-bar">
-                    <image :src="'http://island.hellochaos.cn/uploads/' + headUrl" class="head-image"></image>
+                    <image :src="'http://island.hellochaos.cn/uploads/' + headUrl"
+                           class="head-image"
+                           style="border: 1px solid black"
+                    ></image>
                 </view>
                 <view class="middle-bar">
                     <view class="user-name">{{name}}</view>
@@ -179,7 +182,7 @@
             },
             signature() {
                 return userInfo.Info.signature
-            }
+            },
             // headUrl () {
             //     return userInfo.Info.photo
             // }

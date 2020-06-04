@@ -91,9 +91,7 @@
 						    title:"提交成功" 
 						})
 						setTimeout(() => {
-							uni.navigateBack({
-								delta: 1
-							})
+							uni.navigateBack()
 						}, 1000)
                     } else {
                         errorCode(res)

@@ -122,14 +122,14 @@
 
     .box {
         .publicBox;
-        animation: circleRoate 1s;
+        animation: circleRoate 0.5s;
         animation-timing-function: linear;
         animation-fill-mode: forwards;
     }
 
     .box-jiaonang {
         .publicBox;
-        animation: circleRoate_jiaonang 1s;
+        animation: circleRoate_jiaonang 0.5s;
         animation-timing-function: linear;
         animation-fill-mode: forwards;
     }

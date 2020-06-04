@@ -87,11 +87,10 @@
     import {letter} from "@/utils/apiManager/letterApi";
     import {py} from '@/utils/pingyin/pinyin';
     import {isNotNullTrim, checkNumber, moveArray} from "@/utils/utils";
-    import {loginModules} from "@/utils/apiManager/loginApi";
- //    import user from "@/store/modules/user";
-    // const PinyinMatch = require('pinyin-match');
+    import {sort} from "../../utils/sort/sort";
 
-    export default {
+
+	export default {
         name: 'writeLetter',
 
         data() {
@@ -101,17 +100,10 @@
             }
         },
 
-		onShow() {
-        	console.log('nhao')
-		},
-
-		onLoad() {
-			console.log('执行onload')
-		},
 
 
 		mounted() {
-			console.log('重新请求数据')
+			console.log('A' < 'B')
             letter.getBoomFriend().then(res => {
                 if (res.code == 1) {
                     this.boomFriend = this.reFormat(res.data.records)
@@ -144,9 +136,10 @@
                         newData[has].data.push(data[i])
                     }
                 }
-                newData.sort(function(a, b) {
-					return (a.group + '').localeCompare(b.group + '')
-				})
+                // newData.sort(function(a, b) {
+				// 	return a.group < b.group
+				// })
+				sort(newData)
 				if (newData[0].group == '#') {
 					moveArray(newData, [0], newData.length-1, 1)
 				}

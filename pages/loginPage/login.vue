@@ -166,7 +166,6 @@
                 uni.getStorage({
                     key: 'Authorization',
                     success: function (res) {
-                        console.log('请求头部已经存在')
                         uni.reLaunch({
                             url: '/pages/index/letter/writerLetter/writerLetter',
                         })
@@ -201,7 +200,8 @@
                 } else {
                     if (this.sign.confirm !== this.sign.password) {
                         uni.showToast({
-                            title: '两次密码输入不一致'
+                            title: '两次密码输入不一致',
+                            icon: 'none'
                         })
                         return
                     }

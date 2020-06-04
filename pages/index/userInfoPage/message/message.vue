@@ -65,7 +65,7 @@
                     <text class="message-title-inner">{{message.title}}</text>
                     <view>{{message.time}}</view>
                 </view>
-                <view class="message-content">{{message.content}}</view>
+                <view class="message-content">{{content(message.content)}}</view>
                 <view class="isRead" :style="message.isRead ? 'color: green' : 'color: red'">{{message.isRead ? '已读' :
                     '未读'}}
                 </view>
@@ -112,6 +112,14 @@
                 uni.navigateTo({
                     url: '/pages/index/userInfoPage/message/readMessage/readMessage?id='+noticeId
                 })
+            },
+
+            content(value) {
+                if (value.length < 15) {
+                    return value
+                } else {
+                    return value.substring(0, 15) + '...'
+                }
             }
         }
 

@@ -195,12 +195,17 @@
                         content: '',
                     },
                     {
-                        name: '发送信件信件数量',
+                        name: '发送信件数量',
                         module: 'other',
                         content: '',
                     },
                     {
                         name: '胶囊数量',
+                        module: 'other',
+                        content: '',
+                    },
+                    {
+                        name: '写过字数',
                         module: 'other',
                         content: '',
                     }
@@ -252,9 +257,10 @@
                     this.$data.listItem[i]['content'] = userInfo.Info[this.$data.listItem[i]['module']]
                 }
                 this.headImage = userInfo.Info.photo
-                this.otherItem[0]['content'] = userInfo.Info.capsule + '个'
-                this.otherItem[1]['content'] = userInfo.Info.receiveLetter + '封'
-                this.otherItem[2]['content'] = userInfo.Info.sendLetter + '封'
+                this.otherItem[0]['content'] = userInfo.Info.receiveLetter + '封'
+                this.otherItem[1]['content'] = userInfo.Info.sendLetter + '封'
+                this.otherItem[2]['content'] = userInfo.Info.capsule + '个'
+                this.otherItem[3]['content'] = userInfo.Info.word + '个'
             }
         }
     }
