@@ -76,9 +76,9 @@
                         <view class="key">地点</view>
                         <text class="val">{{userInfo.city}}</text>
                     </view>
-                    <view class="btn-box">
-                        <view class="btn">加为笔友</view>
-                    </view>
+<!--                    <view class="btn-box">-->
+<!--                        <view class="btn">加为笔友</view>-->
+<!--                    </view>-->
                 </view>
             </view>
         </view>
