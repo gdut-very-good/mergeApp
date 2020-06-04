@@ -94,23 +94,28 @@
                 stampShow: false,
                 stampUrl: '',
 				stampId: '',
-                friendName: null
+                friendName: null,
+                letterId : null
             }
         },
 
         mounted() {
-            this.getContactList()
-            this.initData()
+            this.getContactList();
+            this.initData();
+        },
+
+		onLoad(options) {
+            this.letterId = options.letterId;
         },
 
         methods: {
             initData() {
                 letter.getUserStamp().then(res => {
                     if (res.code == 1) {
-                        initStampId(res.data.records)
-                        const temp =  getUserStamp(res.data.records)
-                        this.stampUrl = temp[0].url
-                        this.stampId = temp[0].stampId[0]
+                        initStampId(res.data.records);
+                        const temp =  getUserStamp(res.data.records);
+                        this.stampUrl = temp[0].url;
+                        this.stampId = temp[0].stampId[0];
                     } else {
                         errorCode(res)
                     }
@@ -131,16 +136,16 @@
             },
 
             close(data) {
-                this.isShow = false
+                this.isShow = false;
                 if (data.name) {
                     this.friendName = data.name
                 }
             },
 
             closeStamp(data) {
-                this.stampShow = false
+                this.stampShow = false;
                 if (data.url) {
-					this.stampId = data.stampId
+					this.stampId = data.stampId;
                     this.stampUrl = data.url
                 }
             },
@@ -172,24 +177,48 @@
 				letterInformation.info.sendTime = formatDate();
 				letterInformation.info.stampId = this.stampId;
 				const reqData = letterInformation.info;
-				Api.post("/letter/", {
-					...reqData,
-					send : false,
-                    isSend : false,
-				}).then(res => {
-					if (res.code == 1) {
-						uni.showToast({
-							title: '保存成功'
-						});
-						setTimeout(() => {
-							uni.navigateBack({
-								delta: 3
-							})
-						}, 500)
-					} else {
-						errorCode(res)
-					}
-				});
+				console.log(reqData, this.letterId);
+				if(this.letterId) {
+					Api.put("/letter", {
+						...reqData,
+						letterId : this.letterId,
+						send : false,
+						isSend : false,
+					}).then(res => {
+						if (res.code == 1) {
+							uni.showToast({
+								title: '保存成功'
+							});
+							setTimeout(() => {
+								uni.navigateBack({
+									delta: 3
+								})
+							}, 500)
+						} else {
+							errorCode(res)
+						}
+					});
+				} else {
+					Api.post("/letter/", {
+						...reqData,
+						send : false,
+						isSend : false,
+					}).then(res => {
+						if (res.code == 1) {
+							uni.showToast({
+								title: '保存成功'
+							});
+							setTimeout(() => {
+								uni.navigateBack({
+									delta: 3
+								})
+							}, 500)
+						} else {
+							errorCode(res)
+						}
+					});
+                }
+
             }
         },
     }
