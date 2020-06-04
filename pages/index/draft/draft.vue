@@ -27,10 +27,17 @@
 				draftData : []
             }
         },
-        async mounted() {
-			let data = await Api.get("/letter/draft");
-			this.draftData = data.data;
-		},
+        mounted() {
+			Api.get("/letter/draft").then(data => {
+				this.draftData = data.data;
+			});
+        },
+		activated() {
+			console.log("show");
+			Api.get("/letter/draft").then(data => {
+				this.draftData = data.data;
+			});
+        },
         methods : {
 			deleteDraft({letterId}) {
                 Api.delete(`/letter/${letterId}`).then(async (res) => {

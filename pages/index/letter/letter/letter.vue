@@ -13,7 +13,7 @@
             top: 0.2rem;
         }
     }
-	
+
 	.envelope-image {
 		display: flex;
 		align-items: center;
@@ -26,12 +26,12 @@
 		border-radius: 50%;
 		background-color: #ffc300;
 		overflow: hidden;
-		
+
 		image {
 			height: 2rem;
 			width: 2rem;
 		}
-		
+
 	}
 
     .letter-title {
@@ -70,6 +70,7 @@
 	import {letterInformation} from "@/utils/userInfo/letterInfo"
     import {letter} from "../../../../utils/apiManager/letterApi";
     import {errorCode} from "../../../../utils/errorCode/errorCode";
+	import Api from "../../../../utils/apiManager/Api";
 
     export default {
         name: 'letter',
@@ -78,6 +79,7 @@
                 title: '',
                 content: '',
                 draftId: '',
+				draftData : {}
             }
         },
 
@@ -92,7 +94,7 @@
 
         onLoad(option) {
             if (option.letterId) {
-                this.draftId = option.letterId
+                this.draftId = option.letterId;
                 this.getDraftContent()
             }
         },
@@ -100,6 +102,14 @@
         beforeDestroy() {
             if (this.title.length !== 0 || this.content.length !== 0) {
                 console.log('新建留有东西')
+            }
+            if(this.draftId) {
+            	Api.put("/letter", {
+            		...this.draftData,
+            		letterId : this.draftId,
+                    content : this.content,
+					header : this.title
+                })
             }
         },
 
@@ -112,10 +122,11 @@
 
             getDraftContent() {
                 letter.getSingleLetter(this.draftId).then(res => {
-                    console.log(res)
+                    console.log(res);
                     if (res.code == 1) {
-                        this.content = res.data.letter.content
-                        this.title = res.data.letter.header
+                        this.content = res.data.letter.content;
+                        this.title = res.data.letter.header;
+                        this.draftData = res.data.letter;
                     } else {
                         errorCode(res)
                     }

@@ -63,6 +63,7 @@
                 </view>
             </view>
             <view class="submit-btn" @click="submit">投递</view>
+            <view class="submit-btn" @click="saveDraft">存草稿</view>
         </view>
     </view>
 </template>
@@ -76,6 +77,7 @@
     import contact from "@/components/contact/contact";
 	import {letterInformation} from "@/utils/userInfo/letterInfo"
 	import {errorCode} from "@/utils/errorCode/errorCode"
+	import Api from "../../../../../utils/apiManager/Api";
 
     export default {
         name: 'letter',
@@ -148,14 +150,14 @@
             },
 
             submit() {
-				letterInformation.info.sendTime = formatDate()
-				letterInformation.info.stampId = this.stampId
-                const reqData = letterInformation.info
+				letterInformation.info.sendTime = formatDate();
+				letterInformation.info.stampId = this.stampId;
+                const reqData = letterInformation.info;
                 letter.submitLetter(reqData).then(res => {
 					if (res.code == 1) {
 						uni.showToast({
 							title: '发送成功'
-						})
+						});
                         setTimeout(() => {
                             uni.navigateBack({
                                 delta: 3
@@ -165,6 +167,29 @@
 						errorCode(res)
 					}
                 })
+            },
+			saveDraft() {
+				letterInformation.info.sendTime = formatDate();
+				letterInformation.info.stampId = this.stampId;
+				const reqData = letterInformation.info;
+				Api.post("/letter/", {
+					...reqData,
+					send : false,
+                    isSend : false,
+				}).then(res => {
+					if (res.code == 1) {
+						uni.showToast({
+							title: '保存成功'
+						});
+						setTimeout(() => {
+							uni.navigateBack({
+								delta: 3
+							})
+						}, 500)
+					} else {
+						errorCode(res)
+					}
+				});
             }
         },
     }
