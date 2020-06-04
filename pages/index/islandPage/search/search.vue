@@ -4,7 +4,7 @@
 			<island-item v-for="(data, index) in islands" v-bind="data"/>
 		</view>
 		<view v-else class="error">
-			没有找到数据哦 : {{dataStr}}
+			没有找到数据哦
 		</view>
 	</view>
 </template>

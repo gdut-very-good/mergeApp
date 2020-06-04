@@ -14,7 +14,7 @@
             </view>
         </view>
         <view class="name">
-            {{username}}的海岛
+            {{nickname || nickName || username}}的海岛
         </view>
 <!--        <island-detail></island-detail>-->
     </view>
@@ -47,6 +47,12 @@
             },
             userId : {
         		require : true
+            },
+            nickname : {
+
+            },
+            nickName : {
+
             },
             photo : {
 
