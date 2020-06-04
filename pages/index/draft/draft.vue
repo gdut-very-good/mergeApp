@@ -4,10 +4,10 @@
         <view class="container">
             <view class="title">共{{draftData.length}}条草稿</view>
             <view class="body">
-                <view class="box" v-for="(draft, index) in draftData" :key="index" @click="edit(draft)">
-                    <view class="title">{{draft.header || 'paper'}}</view>
-                    <view class="preview-content">{{draft.content || '内容'}}</view>
-                    <text class="time">{{draft.sendTime || '2020-11-13'}}</text>
+                <view class="box" v-for="(draft, index) in draftData" :key="index">
+                    <view class="title" @click="edit(draft)">{{draft.header || 'paper'}}</view>
+                    <view class="preview-content" @click="edit(draft)">{{draft.content || '内容'}}</view>
+                    <text class="time" @click="edit(draft)">{{draft.sendTime || '2020-11-13'}}</text>
                     <text class="delete" @click="deleteDraft(draft)">×</text>
 <!--                    <letter></letter>-->
                 </view>
@@ -40,10 +40,21 @@
         },
         methods : {
 			deleteDraft({letterId}) {
-                Api.delete(`/letter/${letterId}`).then(async (res) => {
-					let data = Api.get("/letter/draft");
-					this.draftData = data.data;
-                })
+				let vm = this;
+				uni.showModal({
+					title: '提示',
+					content: '确认要删除吗',
+					success: function (res) {
+						if (res.confirm) {
+							Api.delete(`/letter/${letterId}`).then(async (res) => {
+								Api.get("/letter/draft").then(data => {
+									vm.draftData = data.data;
+								});
+							});
+						} else if (res.cancel) {
+						}
+					}
+				});
             },
 			edit(draft) {
 				updateDraftInfo(draft);
