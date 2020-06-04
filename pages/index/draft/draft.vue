@@ -8,7 +8,7 @@
                     <view class="title" @click="edit(draft)">{{draft.header || 'paper'}}</view>
                     <view class="preview-content" @click="edit(draft)">{{draft.content || '内容'}}</view>
                     <text class="time" @click="edit(draft)">{{draft.sendTime || '2020-11-13'}}</text>
-                    <text class="delete" @click="deleteDraft(draft)">×</text>
+<!--                    <text class="delete" @click="deleteDraft(draft)">×</text>-->
 <!--                    <letter></letter>-->
                 </view>
             </view>
@@ -34,10 +34,14 @@
         },
 		activated() {
 			console.log("show");
-			Api.get("/letter/draft").then(data => {
-				this.draftData = data.data;
-			});
         },
+		onShow: function() {
+			setTimeout(() => {
+				Api.get("/letter/draft").then(data => {
+					this.draftData = data.data;
+				});
+            }, 100)
+		},
         methods : {
 			deleteDraft({letterId}) {
 				let vm = this;
@@ -101,7 +105,7 @@
                     box-sizing: border-box;
                     position: relative;
                     padding-left: 25 * @px2rem;
-                    padding-right: 60 * @px2rem;
+                    padding-right: 25 * @px2rem;
                     margin-bottom: 2 * @px2rem;
                     background: #ffffff;
                     > .title {
@@ -119,7 +123,7 @@
                         font-size: 15px;
                         color: rgb(161, 161, 161);
                         position: absolute;
-                        right: 80 * @px2rem;
+                        right: 25 * @px2rem;
                         top: 14 * @px2rem;
                     }
                     > .delete {

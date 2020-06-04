@@ -10,7 +10,7 @@
             <view class="container">
                 <view class="avatar-box">
                     <!-- this.$store.default.state.imageBaseUrl +  -->
-                    <image :src="this.imageUrl + userInfo.photo" alt="" class="avatar"/>
+                    <image :src="this.imageUrl + userInfo.photo" alt="" class="avatar" @click="popView"/>
                     <text class="name">{{userInfo.username}}</text>
                 </view>
 <!--                <view class="content">-->
@@ -57,6 +57,31 @@
                     font-size: 18px"></textarea>
             </view>
         </view>
+        <view class="mask" v-show="showMask">
+            <view class="container rua">
+                <view class="close" @click="showMask = false">×</view>
+                <view>
+                    <view class="item avatar-box">
+                        <image :src="imageUrl + userInfo.photo"  style="width: 60px; height: 60px" class="avatar"></image>
+                    </view>
+                    <view class="item">
+                        <view class="key">用户名</view>
+                        <text class="val">{{userInfo.username}}</text>
+                    </view>
+                    <view class="item">
+                        <view class="key">签名</view>
+                        <text class="val">{{userInfo.signature}}</text>
+                    </view>
+                    <view class="item">
+                        <view class="key">地点</view>
+                        <text class="val">{{userInfo.city}}</text>
+                    </view>
+<!--                    <view class="btn-box">-->
+<!--                        <view class="btn">加为笔友</view>-->
+<!--                    </view>-->
+                </view>
+            </view>
+        </view>
     </view>
 
 
@@ -82,7 +107,8 @@
                 userId : 0,
 				content : '',
                 myInfo : {},
-				starIsland : []
+				starIsland : [],
+                showMask : false
             }
         },
         computed : {
@@ -154,6 +180,12 @@
 					}
 				});
 			},
+			popView() {
+        		this.showMask = true;
+            },
+            apply() {
+
+            }
         },
 
 		onLoad(options) {

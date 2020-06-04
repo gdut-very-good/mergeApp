@@ -3,7 +3,7 @@
         <div class="content">{{content}}</div>
         <div class="box">
             <text class="time">{{time}}</text>
-            <text class="reply">{{view}}</text>
+            <text class="reply">浏览量 : {{view}}</text>
         </div>
     </div>
 

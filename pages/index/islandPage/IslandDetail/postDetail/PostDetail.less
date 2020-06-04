@@ -6,7 +6,7 @@
 .PostDetailView {
     position: relative;
     height: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 45px;
     .post-box {
         @paddingHor();
         padding-top: 20 * @px2rem;
@@ -101,15 +101,15 @@
             margin-bottom: 15 * @px2rem;
         }
     }
-
     .input-box {
         position: fixed;
         bottom: 0px;
         right: 0;
         width: 100%;
         z-index: 101;
+        background-color: #f5f5f5;
         input {
-            height: 30px;
+            height: 36px;
             width: 100%;
             border: 1px solid black;
             box-sizing: border-box;
@@ -122,8 +122,13 @@
         .rua {
             width: 100%;
             box-sizing: border-box;
-            position: absolute;
-            border-top: #000 2 * @px2rem solid
+
+            border-top: #000 2 * @px2rem solid;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background-color: #ffffff;
+            z-index: 999;
         }
         .top {
             display: flex;
