@@ -108,32 +108,6 @@
             }
         },
 
-        beforeDestroy() {
-            if (this.title.length !== 0 || this.content.length !== 0) {
-                console.log('新建留有东西')
-            }
-            // if(this.draftId) {
-            // 	Api.put("/letter", {
-            // 		...this.draftData,
-            // 		letterId : this.draftId,
-            //         content : this.content,
-			// 		header : this.title
-            //     })
-            // } else {
-			// 	uni.showModal({
-			// 		title: '提示',
-			// 		content: '要保存这个信件为草稿吗',
-			// 		success: function (res) {
-			// 			if (res.confirm) {
-			// 				this.jump();
-			// 			} else if (res.cancel) {
-            //
-			// 			}
-			// 		}
-			// 	});
-            // }
-        },
-
 		onBackPress(event, rua) {
         	console.log(event, rua);
         	let vm = this;

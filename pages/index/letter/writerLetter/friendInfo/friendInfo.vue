@@ -20,6 +20,7 @@
             height: 100%;
             width: 30%;
             .icon {
+                border: 1px solid black;
                 height: 4rem;
                 width: 4rem;
                 border-radius: 50%;

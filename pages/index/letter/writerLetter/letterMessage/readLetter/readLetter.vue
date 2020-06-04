@@ -55,14 +55,14 @@
 <template>
     <view class="letter-message">
         <image src="../../../../../../static/letter/letter_bg2.jpg"></image>
-        <view class="line">亲爱的: {{acceptName}}</view>
+        <view class="line">亲爱的: {{receiverName}}</view>
         <view ref="desc" class="content-container">
             <view class="content">{{content}}</view>
             <view class="real-line">
                 <view class="line" v-for="list in line"></view>
             </view>
         </view>
-        <view class="line writer">{{receiverName}}</view>
+        <view class="line writer">{{acceptName}}</view>
         <view class="line time">{{time}}</view>
     </view>
 </template>
@@ -114,7 +114,7 @@
                     if (res.code == 1) {
                         this.receiverName = res.data.receiverName
                         this.acceptName = res.data.nickname
-                        this.time = res.data.letter.sendTime.split(' ')[0]
+                        this.time = res.data.letter.sendTime
                         this.content = res.data.letter.content
                         console.log(this.$refs.desc)
 

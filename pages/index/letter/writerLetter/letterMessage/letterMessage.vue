@@ -60,7 +60,7 @@
                 margin: auto;
                 white-space: normal;
                 margin-top: 1rem;
-                color: white;
+                color: #9a6060;
                 text-align: left;
             }
 
@@ -205,7 +205,6 @@
         },
 
         onLoad(options) {
-            console.log('重新请求数据')
             uni.setNavigationBarTitle({
                 title: options.nickname
             });
@@ -284,7 +283,7 @@
             },
 
             content(value) {
-                if (value.length < 0) {
+                if (value.length < 30) {
                     return value
                 } else {
                     return value.substring(0, 30) + '...'

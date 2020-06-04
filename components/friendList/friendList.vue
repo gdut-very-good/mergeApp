@@ -115,7 +115,6 @@
             letter.getBoomFriend().then(res => {
                 if (res.code == 1) {
                     this.boomFriend = this.reFormat(res.data.records)
-					console.log(this.boomFriend)
                 }
             })
         },
@@ -137,7 +136,7 @@
                     //the array has not this str group
                     if (has === 'none') {
                         newData.push({
-                            group: firstStr[0],
+                            group: firstStr[0].toUpperCase(),
                             data: []
                         })
                         newData[newData.length-1].data.push(data[i])
@@ -145,10 +144,12 @@
                         newData[has].data.push(data[i])
                     }
                 }
-                newData.sort((a, b) => {
-                    return (a.group + '').localeCompare(b.group + '')
-                })
-                moveArray(newData, [0], newData.length-1, 1)
+                newData.sort(function(a, b) {
+					return (a.group + '').localeCompare(b.group + '')
+				})
+				if (newData[0].group == '#') {
+					moveArray(newData, [0], newData.length-1, 1)
+				}
                 return newData
             },
 
