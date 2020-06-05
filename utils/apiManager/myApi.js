@@ -38,5 +38,9 @@ class my extends Request{
     async getSingleMessage(messageId) {
         return getResult(await this.get('/notice/' + messageId))
     }
+    //根据auth获取获取个人信息
+    async getAuthUserInfo(data) {
+        return getResult(await this.get('/user/me', data))
+    }
 }
 export const myApi = new my()

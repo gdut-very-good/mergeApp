@@ -139,8 +139,8 @@
             return {
                 logShow: true,
                 log: {
-                    username: 'huange7',
-                    password: '123456'
+                    username: '',
+                    password: ''
                 },
                 sign: {
                     username: '',
@@ -157,24 +157,8 @@
                 return 'background-color: black;opacity: 0.2;'
             }
         },
-        created() {
-            this.detected()
-        },
+
         methods: {
-            //检测请求头auth自动登录
-            detected() {
-                uni.getStorage({
-                    key: 'Authorization',
-                    success: function (res) {
-                        uni.reLaunch({
-                            url: '/pages/index/letter/writerLetter/writerLetter',
-                        })
-                    },
-                    fail() {
-                        console.log('请求头部已经不存在')
-                    }
-                });
-            },
 
             toIndex(options) {
                 if (options === 'log') {

@@ -235,9 +235,6 @@
             reformat() {
                 for (let i = 0; i < this.letterList.length; i++) {
                     this.letterList[i].stampId = matchId(this.letterList[i].stampName)
-                    letter.getSingleInfo(this.letterList[i].receiverId).then(res => {
-                        this.letterList[i].receiverId = res.data
-                    })
                 }
             },
 

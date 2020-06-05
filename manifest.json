@@ -39,6 +39,17 @@
             "ios" : {},
             "sdkConfigs" : {
                 "ad" : {}
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "C:/Users/Administrator/Desktop/微信图片_20200605153202.png",
+                    "xhdpi" : "C:/Users/Administrator/Desktop/微信图片_20200605153202.png",
+                    "xxhdpi" : "C:/Users/Administrator/Desktop/微信图片_20200605153202.png",
+                    "xxxhdpi" : "C:/Users/Administrator/Desktop/微信图片_20200605153202.png"
+                },
+                "ios" : {
+                    "appstore" : "C:/Users/Administrator/Desktop/微信图片_20200605153202.png"
+                }
             }
         }
     },

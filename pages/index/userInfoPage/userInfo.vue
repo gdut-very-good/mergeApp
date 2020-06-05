@@ -203,7 +203,7 @@
                         imageUrl: 'http://printer.noerror.xyz/appImage/data.png'
                     },
                     {
-                        name: '树洞管理',
+                        name: '树洞',
                         module: 'managerTree',
                         imageUrl: 'http://printer.noerror.xyz/appImage/tree.png'
                     },

@@ -88,10 +88,12 @@
                     console.log(res)
                     if (res.code == 1) {
 						uni.showToast({
-						    title:"提交成功" 
+						    title:"创建成功"
 						})
 						setTimeout(() => {
-							uni.navigateBack()
+							uni.reLaunch({
+                                url: '/pages/index/letter/writerLetter/writerLetter'
+                            })
 						}, 1000)
                     } else {
                         errorCode(res)

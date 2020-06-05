@@ -102,6 +102,11 @@
             }
         },
 
+        onHide() {
+            console.log('清空信件')
+            letterInformation.clear()
+        },
+
         onLoad(option) {
             if (option.letterId) {
                 this.draftId = option.letterId;
@@ -112,6 +117,7 @@
 		onBackPress(event, rua) {
         	console.log(event, rua);
         	let vm = this;
+            letterInformation.clear()
 			if(this.draftId) {
 				Api.put("/letter", {
 					...this.draftData,

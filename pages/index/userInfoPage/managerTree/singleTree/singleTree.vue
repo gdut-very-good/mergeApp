@@ -38,6 +38,7 @@
         width: 90%;
         margin: auto;
         margin-bottom: 1rem;
+        margin-top: 1rem;
         border: 1px solid black;
         .leaving-title {
             height: 1rem;
